@@ -5,3 +5,4 @@ Dependencies used:
   4. Redux-dom
   5. Redux-thunk
   6. Axios
+  7. eslint (airbnb style guides)
