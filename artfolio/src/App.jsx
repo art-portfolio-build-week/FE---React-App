@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchApi } from "./redux/actions/actionCreators";
+import Nav from "./components/Navigation";
 import Login from "./components/Authentication/Login";
-import Signup from "./components/Authentication/Signup";
+import Register from "./components/Authentication/Register";
 
 
 
@@ -16,8 +17,8 @@ function App(props) {
   return (
     <div className="app">
       {/* {postsArray.map(post => <p>{post.author}</p>)} */}
-      <Signup />
-      <Login />
+      <Nav />
+      
     </div>
   );
 }
