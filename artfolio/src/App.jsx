@@ -6,13 +6,14 @@ import { fetchApi } from "./redux/actions/actionCreators";
 import Nav from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
+import { fetchAll } from "./constants";
 
 function App(props) {
   const { fetchApi } = props;
 
   useEffect(() => {
-    fetchApi();
-  }, []);
+    fetchApi(fetchAll);
+  }, [fetchApi]);
 
   return (
     <div className="app">

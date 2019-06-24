@@ -26,8 +26,8 @@ export const registerUser = payload => dispatch => {
 };
 
 // Post
-export const fetchApi = () => dispatch => {
-  axiosAuth().get(URL.fetchAll)
+export const fetchApi = URL => dispatch => {
+  axiosAuth().get(URL)
     .then((res) => {
       dispatch({ type: types.FETCHING_OK, payload: res.data });
     })
