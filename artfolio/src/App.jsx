@@ -11,7 +11,7 @@ function App(props) {
   const { fetchApi } = props;
 
   useEffect(() => {
-    fetchApi("https://5d0f7454c56e7600145a42d8.mockapi.io/api/posts");
+    fetchApi();
   }, []);
 
   return (
