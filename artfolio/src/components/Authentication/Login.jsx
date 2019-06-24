@@ -15,15 +15,14 @@ function Login(props) {
   );
 }
 
-const inputError = {
-  invalid: {
-    email: "Please enter a valid email.",
-    password: "Your password must atleast be 8 characters long.",
-  },
-  required: {
-    email: "An email is required in order to login",
-    password: "A password is required in order to login",
-  },
+const invalid = {
+  email: "Please enter a valid email.",
+  password: "Your password must atleast be 8 characters long.",
+};
+
+const required = {
+  email: "An email is required in order to login",
+  password: "A password is required in order to login",
 };
 
 const LoginFormik = withFormik({
@@ -34,8 +33,8 @@ const LoginFormik = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string().email(inputError.invalid.email).required(inputError.required.email),
-    password: Yup.string().min(8, inputError.invalid.password).required(inputError.required.password),
+    email: Yup.string().email(invalid.email).required(required.email),
+    password: Yup.string().min(8, invalid.password).required(required.password),
   }),
   handleSubmit(values) {
     // { resetForm, setErrors, setSubmitting } pass as second arg if server sends back error
