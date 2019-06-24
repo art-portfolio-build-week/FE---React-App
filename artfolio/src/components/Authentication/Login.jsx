@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as Yup from "yup";
 import pt from "prop-types";
 import { loginUser } from "../../redux/actions/actionCreators";
-import { loginURL } from "../../constants";
 
 function Login(props) {
   const { errors, touched } = props;
@@ -42,7 +41,7 @@ const LoginFormik = withFormik({
   }),
   handleSubmit(values, { props, setSubmitting }) {
     // { resetForm, setErrors, setSubmitting } pass as second arg if server sends back error
-    props.loginUser(loginURL, values);
+    props.loginUser(values);
     setSubmitting(false);
   },
 })(Login);
