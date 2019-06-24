@@ -6,7 +6,12 @@ const initalState = {
   errorMessage: null,
 };
 
-export default function postReducer(state = initalState, action) {
+const authState = {
+  token: null,
+  authFail: null,
+};
+
+export function postReducer(state = initalState, action) {
   switch (action.type) {
     case types.FETCH_API:
       return { ...state, isFetching: action.payload };
@@ -14,6 +19,17 @@ export default function postReducer(state = initalState, action) {
       return { ...state, postsArray: action.payload };
     case types.FETCHING_FAIL:
       return { ...state, errorMessage: action.payload };
+    default:
+      return state;
+  }
+}
+
+export function authReducer(state = authState, action) {
+  switch (action.type) {
+    case types.AUTHENTICATE:
+      return { ...state, token: action.payload };
+    case types.AUTH_FAIL:
+      return { ...state, token: action.payload };
     default:
       return state;
   }
