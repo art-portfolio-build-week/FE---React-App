@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 function Singup(props) {
+  // eslint-disable-next-line react/prop-types
   const { errors } = props;
 
   return (
@@ -19,6 +20,7 @@ function Singup(props) {
       <Field type="text" name="igHandle" />
       {errors.igHandle && <p>{errors.igHandle}</p>}
       <Field type="text" name="twHandle" />
+      {errors.twHandle && <p>{errors.twHandle}</p>}
       <button type="submit">Login</button>
     </Form>
   );
@@ -54,7 +56,7 @@ const errRequired = {
 };
 
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
-const twitterRegEx = /^(\@)?([a-z0-9_]{1,15})$/;
+const twitterRegEx = /\s([@#][\w_-]{1,15})/;
 
 export default withFormik({
   mapPropsToValues,

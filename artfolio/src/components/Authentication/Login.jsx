@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 function Login(props) {
+  // eslint-disable-next-line react/prop-types
   const { errors, touched } = props;
   return (
     <Form>
@@ -42,7 +43,7 @@ const LoginFormik = withFormik({
       email: values.email,
       password: values.password,
     };
-    console.log(user);
+    return user;
   },
 })(Login);
 
