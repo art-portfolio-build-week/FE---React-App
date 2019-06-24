@@ -1,6 +1,7 @@
 import axiosAuth from "../../axios";
 import * as types from "./actionTypes";
 
+// Authentication
 export const loginUser = (URL, payload) => dispatch => {
   axiosAuth().post(URL, payload)
     .then((res) => {
@@ -12,6 +13,7 @@ export const loginUser = (URL, payload) => dispatch => {
     });
 };
 
+// Post
 export const fetchApi = URL => dispatch => {
   axiosAuth().get(URL)
     .then((res) => {
