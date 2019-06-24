@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Route } from "react-router-dom"
 import { fetchApi } from "./redux/actions/actionCreators";
 import Nav from "./components/Navigation";
 import Login from "./components/Authentication/Login";
@@ -18,7 +19,8 @@ function App(props) {
     <div className="app">
       {/* {postsArray.map(post => <p>{post.author}</p>)} */}
       <Nav />
-      
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
     </div>
   );
 }
