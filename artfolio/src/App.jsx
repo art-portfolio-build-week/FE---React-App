@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchApi } from "./actions/actionCreators";
+import { fetchApi } from "./redux/actions/actionCreators";
+import Login from "./components/Authentication/Login";
+import Signup from "./components/Authentication/Signup";
+
+
 
 function App(props) {
-  const { fetchApi } = props;
+  const { fetchApi, postsArray } = props;
 
   useEffect(() => {
     fetchApi("https://5d0f7454c56e7600145a42d8.mockapi.io/api/posts");
@@ -11,7 +15,9 @@ function App(props) {
 
   return (
     <div className="app">
-      <h1>Hello World</h1>
+      {/* {postsArray.map(post => <p>{post.author}</p>)} */}
+      <Signup />
+      <Login />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import axiosAuth from "../axios";
+import axiosAuth from "../../axios";
 import * as types from "./actionTypes";
 
 export const loginUser = (URL, payload) => dispatch => {
