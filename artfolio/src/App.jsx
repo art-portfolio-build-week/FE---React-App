@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
+import pt from "prop-types";
 import { fetchApi } from "./redux/actions/actionCreators";
 import Nav from "./components/Navigation";
 import Login from "./components/Authentication/Login";
@@ -31,3 +32,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchApi })(App);
+
+App.propTypes = {
+  fetchApi: pt.func.isRequired,
+};

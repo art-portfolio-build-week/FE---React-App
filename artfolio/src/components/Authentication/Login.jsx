@@ -1,9 +1,9 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import pt from "prop-types";
 
 function Login(props) {
-  // eslint-disable-next-line react/prop-types
   const { errors, touched } = props;
   return (
     <Form>
@@ -48,3 +48,19 @@ const LoginFormik = withFormik({
 })(Login);
 
 export default LoginFormik;
+
+Login.defaultProps = {
+  errors: {},
+  touched: {},
+};
+
+Login.propTypes = {
+  errors: pt.shape({
+    email: pt.string,
+    password: pt.string,
+  }),
+  touched: pt.shape({
+    email: pt.bool,
+    password: pt.bool,
+  }),
+};

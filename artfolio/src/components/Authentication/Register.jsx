@@ -1,10 +1,11 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import pt from "prop-types";
 
 function Register(props) {
   // eslint-disable-next-line react/prop-types
-  const { errors } = props;
+  const { errors, touched } = props;
 
   return (
     <Form>
@@ -18,9 +19,9 @@ function Register(props) {
       {errors.passwordConfirm && <p>{errors.passwordConfirm}</p>}
       <h2>Connect your social media</h2>
       <Field type="text" name="igHandle" />
-      {errors.igHandle && <p>{errors.igHandle}</p>}
+      {touched.igHandle && errors.igHandle && <p>{errors.igHandle}</p>}
       <Field type="text" name="twHandle" />
-      {errors.twHandle && <p>{errors.twHandle}</p>}
+      {touched.igHandle && errors.twHandle && <p>{errors.twHandle}</p>}
       <button type="submit">Register</button>
     </Form>
   );
@@ -73,3 +74,29 @@ export default withFormik({
     console.log(values);
   },
 })(Register);
+
+Register.defaultProps = {
+  errors: {},
+  touched: {},
+};
+
+Register.propTypes = {
+  errors: pt.shape({
+    username: pt.string,
+    email: pt.string,
+    dob: pt.string,
+    password: pt.string,
+    passwordConfirm: pt.string,
+    igHandle: pt.string,
+    twHandle: pt.string,
+  }),
+  touched: pt.shape({
+    username: pt.bool,
+    email: pt.bool,
+    dob: pt.bool,
+    password: pt.bool,
+    passwordConfirm: pt.bool,
+    igHandle: pt.bool,
+    twHandle: pt.bool,
+  }),
+};
