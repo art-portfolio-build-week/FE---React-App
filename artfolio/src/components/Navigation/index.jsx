@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function (props) {
+export default function () {
   return (
     <nav>
       <NavLink to="/">Home</NavLink>
