@@ -2,7 +2,7 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-function Singup(props) {
+function Register(props) {
   // eslint-disable-next-line react/prop-types
   const { errors } = props;
 
@@ -21,7 +21,7 @@ function Singup(props) {
       {errors.igHandle && <p>{errors.igHandle}</p>}
       <Field type="text" name="twHandle" />
       {errors.twHandle && <p>{errors.twHandle}</p>}
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </Form>
   );
 }
@@ -48,11 +48,11 @@ const errInvalid = {
 };
 
 const errRequired = {
-  username: "An username is required in order to singup",
-  dob: "A date of birth is required in order to singup",
+  username: "An username is required in order to Register",
+  dob: "A date of birth is required in order to Register",
   email: "An email is required in order to signup",
   password: "A password is required in order to signup",
-  passwordConfirm: "You need to confirm your password before signing up",
+  passwordConfirm: "You need to confirm your password before registering",
 };
 
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
@@ -72,4 +72,4 @@ export default withFormik({
   handleSubmit(values) {
     console.log(values);
   },
-})(Singup);
+})(Register);
