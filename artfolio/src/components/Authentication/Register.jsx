@@ -7,7 +7,6 @@ import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
 
 function Register(props) {
-  // eslint-disable-next-line react/prop-types
   const { errors, touched } = props;
 
   return (
