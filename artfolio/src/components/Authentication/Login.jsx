@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as Yup from "yup";
 import pt from "prop-types";
 import { loginUser } from "../../redux/actions/actionCreators";
+import { requiredLogin, loginInvalid } from "../../constants";
 
 function Login(props) {
   const { errors, touched } = props;
@@ -18,16 +19,6 @@ function Login(props) {
   );
 }
 
-const invalid = {
-  email: "Please enter a valid email.",
-  password: "Your password must atleast be 8 characters long.",
-};
-
-const required = {
-  email: "An email is required in order to login",
-  password: "A password is required in order to login",
-};
-
 const LoginFormik = withFormik({
   mapPropsToValues() {
     return {
@@ -36,8 +27,8 @@ const LoginFormik = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string().email(invalid.email).required(required.email),
-    password: Yup.string().min(8, invalid.password).required(required.password),
+    email: Yup.string().email(loginInvalid.email).required(requiredLogin.email),
+    password: Yup.string().min(8, loginInvalid.password).required(requiredLogin.password),
   }),
   handleSubmit(values, { props, setSubmitting }) {
     // { resetForm, setErrors, setSubmitting } pass as second arg if server sends back error

@@ -1,7 +1,10 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
+import { connect } from "react-redux";
 import * as Yup from "yup";
 import pt from "prop-types";
+import { registerUser } from "../../redux/actions/actionCreators";
+import { registerInvalid, registerRequired }  from "../../constants";
 
 function Register(props) {
   // eslint-disable-next-line react/prop-types
@@ -38,42 +41,26 @@ function mapPropsToValues() {
   };
 }
 
-const errInvalid = {
-  username: "Please enter a valid name.",
-  dob: "Please enter a valid date of birth",
-  email: "Please enter a valid email.",
-  password: "Your password must atleast be 8 characters long.",
-  passwordConfirm: "Your passwords do not match.",
-  igHandle: "That is not a valid instagram handle",
-  twHandle: "That is not a valid twitter handle",
-};
-
-const errRequired = {
-  username: "An username is required in order to Register",
-  dob: "A date of birth is required in order to Register",
-  email: "An email is required in order to signup",
-  password: "A password is required in order to signup",
-  passwordConfirm: "You need to confirm your password before registering",
-};
-
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 const twitterRegEx = /\s([@#][\w_-]{1,15})/;
 
-export default withFormik({
+const RegisterFormik =  withFormik({
   mapPropsToValues,
   validationSchema: Yup.object().shape({
-    username: Yup.string(errInvalid.username).required(errRequired.username),
-    email: Yup.string().email(errInvalid.email).required(errRequired.email),
-    dob: Yup.date(errInvalid.dob).required(errRequired.dob),
-    password: Yup.string().min(8, errInvalid.password).required(errRequired.password),
-    passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], errInvalid.passwordConfirm).required(errRequired.passwordConfirm),
-    igHandle: Yup.string().matches(instagramRegEx, errInvalid.igHandle),
-    twHandle: Yup.string().matches(twitterRegEx, errInvalid.twHandle),
+    username: Yup.string(registerInvalid.username).required(registerRequired.username),
+    email: Yup.string().email(registerInvalid.email).required(registerRequired.email),
+    dob: Yup.date(registerInvalid.dob).required(registerRequired.dob),
+    password: Yup.string().min(8, registerInvalid.password).required(registerRequired.password),
+    passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], registerInvalid.passwordConfirm).required(registerRequired.passwordConfirm),
+    igHandle: Yup.string().matches(instagramRegEx, registerInvalid.igHandle),
+    twHandle: Yup.string().matches(twitterRegEx, registerInvalid.twHandle),
   }),
   handleSubmit(values) {
     console.log(values);
   },
 })(Register);
+
+export default connect(state => state, { registerUser })(RegisterFormik);
 
 Register.defaultProps = {
   errors: {},
