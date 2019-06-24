@@ -1,6 +1,6 @@
 Dependencies used:
   1. Styled-Components
-  2. React-Router
+  2. React-Router-Dom
   3. Redux 
   4. Redux-dom
   5. Redux-thunk
