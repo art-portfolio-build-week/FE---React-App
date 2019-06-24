@@ -1,7 +1,10 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
+import { connect } from "react-redux";
 import * as Yup from "yup";
 import pt from "prop-types";
+import { loginUser } from "../../redux/actions/actionCreators";
+import { loginURL } from "../../constants";
 
 function Login(props) {
   const { errors, touched } = props;
@@ -37,17 +40,14 @@ const LoginFormik = withFormik({
     email: Yup.string().email(invalid.email).required(required.email),
     password: Yup.string().min(8, invalid.password).required(required.password),
   }),
-  handleSubmit(values) {
+  handleSubmit(values, { props, setSubmitting }) {
     // { resetForm, setErrors, setSubmitting } pass as second arg if server sends back error
-    const user = {
-      email: values.email,
-      password: values.password,
-    };
-    return user;
+    props.loginUser(loginURL, values);
+    setSubmitting(false);
   },
 })(Login);
 
-export default LoginFormik;
+export default connect(state => state, { loginUser })(LoginFormik);
 
 Login.defaultProps = {
   errors: {},
