@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as Yup from "yup";
 import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
-import { registerInvalid, registerRequired }  from "../../constants";
+import { registerInvalid, registerRequired } from "../../constants";
 
 function Register(props) {
   // eslint-disable-next-line react/prop-types
@@ -29,6 +29,7 @@ function Register(props) {
     </Form>
   );
 }
+
 function mapPropsToValues() {
   return {
     username: "",
@@ -44,10 +45,10 @@ function mapPropsToValues() {
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 const twitterRegEx = /\s([@#][\w_-]{1,15})/;
 
-const RegisterFormik =  withFormik({
+const RegisterFormik = withFormik({
   mapPropsToValues,
   validationSchema: Yup.object().shape({
-    username: Yup.string(registerInvalid.username).required(registerRequired.username),
+    username: Yup.string(registerInvalid.username).min(6).required(registerRequired.username),
     email: Yup.string().email(registerInvalid.email).required(registerRequired.email),
     dob: Yup.date(registerInvalid.dob).required(registerRequired.dob),
     password: Yup.string().min(8, registerInvalid.password).required(registerRequired.password),
@@ -55,8 +56,9 @@ const RegisterFormik =  withFormik({
     igHandle: Yup.string().matches(instagramRegEx, registerInvalid.igHandle),
     twHandle: Yup.string().matches(twitterRegEx, registerInvalid.twHandle),
   }),
-  handleSubmit(values) {
-    console.log(values);
+  handleSubmit(values, { props, setSubmitting }) {
+    props.registerUser(values);
+    setSubmitting(false);
   },
 })(Register);
 
