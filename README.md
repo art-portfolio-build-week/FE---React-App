@@ -8,3 +8,4 @@ Dependencies used:
   7. eslint (airbnb style guides)
   8. Formik
   9. Yup
+  10. PropTypes
