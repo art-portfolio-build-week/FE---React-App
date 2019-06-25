@@ -1,7 +1,10 @@
 // URL
 export const login = "https://art-draft.herokuapp.com/api/login";
 export const register = "https://art-draft.herokuapp.com/api/register";
+
 export const fetchAll = "https://art-draft.herokuapp.com/api/posts";
+export const addPost = "https://art-draft.herokuapp.com/api/posts";
+export const putPost = id => `https://art-draft.herokuapp.com/api/posts/${id}`;
 
 // Error Messages
 export const loginInvalid = {
