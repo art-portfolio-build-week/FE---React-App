@@ -18,6 +18,7 @@ export const loginUser = payload => dispatch => {
     .then(res => {
       dispatch(setAuthToState(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
+      localStorage.setItem("token", res.data.token);
     })
     .catch(err => {
       dispatch(setAuthMessageToState(err.message));
@@ -42,7 +43,6 @@ export const fetchApi = URL => dispatch => {
       dispatch({ type: types.FETCHING_OK, payload: res.data });
     })
     .catch(err => {
-      console.log(err.message);
       dispatch({ type: types.FETCHING_FAIL, payload: err });
     })
     .finally(() => {
@@ -50,6 +50,17 @@ export const fetchApi = URL => dispatch => {
     });
 };
 
-export const addPost = payload => dispatch => null;
+export const addPost = payload => dispatch => {
+  axiosAuth().post(URL.addPost, payload)
+    .then(res => {
+      dispatch({ type: types.FETCHING_OK, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.FETCHING_FAIL, payload: err });
+    })
+    .finally(() => {
+      dispatch({ type: types.FETCH_API, payload: false });
+    });
+};
 
-export const deletePost = () => dispatch => null;
+// export const deletePost = () => dispatch => null;
