@@ -51,29 +51,29 @@ export const fetchApi = URL => dispatch => {
 };
 
 export const addPost = payload => dispatch => {
-  axiosAuth().post(URL.addPost, payload)
-    .then(res => {
-      dispatch({ type: types.FETCHING_OK, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: types.FETCHING_FAIL, payload: err });
-    })
-    .finally(() => {
-      dispatch({ type: types.FETCH_API, payload: false });
-    });
+  axiosAuth().post(URL.addPost, payload);
+  // .then(res => {
+  //   dispatch({ type: types.FETCHING_OK, payload: res.data });
+  // })
+  // .catch(err => {
+  //   dispatch({ type: types.FETCHING_FAIL, payload: err });
+  // })
+  // .finally(() => {
+  //   dispatch({ type: types.FETCH_API, payload: false });
+  // });
 };
 
 export const editPost = (URL, payload) => dispatch => {
-  axiosAuth().put(URL, payload)
-    .then(res => {
-      dispatch({ type: types.FETCHING_OK, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: types.FETCHING_FAIL, payload: err });
-    })
-    .finally(() => {
-      dispatch({ type: types.FETCH_API, payload: false });
-    });
+  axiosAuth().put(URL, payload);
+  // .then(res => {
+  //   dispatch({ type: types.FETCHING_OK, payload: res.data });
+  // })
+  // .catch(err => {
+  //   dispatch({ type: types.FETCHING_FAIL, payload: err });
+  // })
+  // .finally(() => {
+  //   dispatch({ type: types.FETCH_API, payload: false });
+  // });
 };
 
 export const postToEdit = post => ({
