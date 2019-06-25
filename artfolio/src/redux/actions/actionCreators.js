@@ -63,4 +63,22 @@ export const addPost = payload => dispatch => {
     });
 };
 
+export const editPost = (URL, payload) => dispatch => {
+  axiosAuth().put(URL, payload)
+    .then(res => {
+      dispatch({ type: types.FETCHING_OK, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.FETCHING_FAIL, payload: err });
+    })
+    .finally(() => {
+      dispatch({ type: types.FETCH_API, payload: false });
+    });
+};
+
+export const postToEdit = post => ({
+  type: types.POST_TO_EDIT,
+  payload: post,
+});
+
 // export const deletePost = () => dispatch => null;
