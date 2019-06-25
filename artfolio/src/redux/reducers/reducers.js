@@ -8,7 +8,7 @@ const initalState = {
 
 const authState = {
   token: null,
-  authFail: null,
+  authMessage: null,
 };
 
 export function postReducer(state = initalState, action) {
@@ -28,8 +28,8 @@ export function authReducer(state = authState, action) {
   switch (action.type) {
     case types.AUTHENTICATE:
       return { ...state, token: action.payload };
-    case types.AUTH_FAIL:
-      return { ...state, token: action.payload };
+    case types.AUTH_MESSAGE:
+      return { ...state, authMessage: action.payload };
     default:
       return state;
   }
