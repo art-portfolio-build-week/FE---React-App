@@ -6,7 +6,7 @@ import * as URL from "../../constants";
 export const loginUser = payload => dispatch => {
   axiosAuth().post(URL.login, payload)
     .then((res) => {
-      dispatch({ type: types.AUTHENTICATE, payload: res.data });
+      dispatch({ type: types.AUTHENTICATE, payload: res.data.token });
     })
     .catch(err => {
       console.log(err.message);
@@ -17,7 +17,8 @@ export const loginUser = payload => dispatch => {
 export const registerUser = payload => dispatch => {
   axiosAuth().post(URL.register, payload)
     .then((res) => {
-      dispatch({ type: types.AUTHENTICATE, payload: res.data });
+      console.log(res)
+      dispatch({ type: types.AUTHENTICATE, payload: res.data.token });
     })
     .catch(err => {
       console.log(err.message);

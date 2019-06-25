@@ -18,21 +18,28 @@ function Login(props) {
     </Form>
   );
 }
+function mapPropsToValues() {
+  return {
+    email: "",
+    password: "",
+  };
+}
 
-const LoginFormik = withFormik({
-  mapPropsToValues() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  validationSchema: Yup.object().shape({
+const valSchema = () => (
+  Yup.object().shape({
     email: Yup.string().email(loginInvalid.email).required(requiredLogin.email),
     password: Yup.string().min(8, loginInvalid.password).required(requiredLogin.password),
-  }),
-  handleSubmit(values, { props, setSubmitting }) {
-    // { resetForm, setErrors, setSubmitting } pass as second arg if server sends back error
-    props.loginUser(values);
+  })
+);
+
+const LoginFormik = withFormik({
+  mapPropsToValues,
+  validationSchema: valSchema,
+  handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
+    const errors = await props.loginUser(values);
+    if (errors) {
+      setErrors(errors);
+    }
     setSubmitting(false);
   },
 })(Login);
