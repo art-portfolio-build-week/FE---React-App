@@ -6,7 +6,8 @@ export default function () {
     <nav>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/login">Login</NavLink>
-      <NavLink to="register">Register</NavLink>
+      <NavLink to="/register">Register</NavLink>
+      <NavLink to="/postart">AddForm</NavLink>
     </nav>
   );
 }
