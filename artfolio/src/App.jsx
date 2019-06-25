@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
 import { fetchApi } from "./redux/actions/actionCreators";
-import Nav from "./components/Navigation";
+import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import PostForm from "./components/Posts/Forms/postForm";
@@ -19,7 +19,7 @@ function App(props) {
 
   return (
     <div className="app">
-      <Nav />
+      <Header />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
