@@ -1,7 +1,7 @@
 import * as types from "../actions/actionTypes";
 
 const initalState = {
-  postsArray: [],
+  postList: [],
   isFetching: true,
   errorMessage: null,
 };
@@ -16,7 +16,7 @@ export function postReducer(state = initalState, action) {
     case types.FETCH_API:
       return { ...state, isFetching: action.payload };
     case types.FETCHING_OK:
-      return { ...state, postsArray: action.payload };
+      return { ...state, postList: action.payload };
     case types.FETCHING_FAIL:
       return { ...state, errorMessage: action.payload };
     default:

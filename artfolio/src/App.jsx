@@ -6,7 +6,8 @@ import { fetchApi } from "./redux/actions/actionCreators";
 import Nav from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
-import PostForm from "./components/Posts/Forms/postForm"
+import PostForm from "./components/Posts/Forms/postForm";
+import PostContainer from "./components/Posts/Posts/PostContainer";
 import { fetchAll } from "./constants";
 
 function App(props) {
@@ -22,14 +23,15 @@ function App(props) {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
+      <Route exact path="/" component={PostContainer} />
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    postsArray: state.postsArray,
-    isFetching: state.postsArray,
+    postList: state.postList,
+    isFetching: state.postList,
     errorMessage: state.errorMessage,
   };
 }
