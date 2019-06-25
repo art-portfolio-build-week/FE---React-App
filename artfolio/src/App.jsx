@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
-import { fetchApi } from "./redux/actions/actionCreators";
+import { fetchApi, authenticate } from "./redux/actions/actionCreators";
 import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
@@ -11,6 +11,9 @@ import PostForm from "./components/Posts/Forms/postForm";
 import PostContainer from "./components/Posts/Posts/PostContainer";
 import { fetchAll } from "./constants";
 import lobster from "./assets/fonts/Lobster/Lobster-Regular.ttf";
+import latoRegular from "./assets/fonts/Lato/Lato-Regular.ttf";
+import latoBold from "./assets/fonts/Lato/Lato-Bold.ttf";
+import latoItalic from "./assets/fonts/Lato/Lato-Italic.ttf";
 
 const GlobalStyle = createGlobalStyle`
 body, html{
@@ -21,12 +24,32 @@ body, html{
     font-weight: 400;
     font-display: cursive
   }
+@font-face {
+    font-family: 'Lato';
+    src: url(${latoRegular});
+    font-style: normal;
+    font-weight: 400;
+    font-display: sans-serif
+  }
+@font-face {
+    font-family: 'Lato';
+    src: url(${latoBold});
+    font-weight: bold;
+    font-display: sans-serif
+  }
+@font-face {
+    font-family: 'Lato';
+    src: url(${latoItalic});
+    font-style: italic, oblique;
+    font-display: sans-serif
+  }
 }
   :root{
     font-size: 62.5%;
   }
-  *, *::before, *::after{
+  *, *::before, *::after, a{
     box-sizing: border-box;
+    font-family: 'lato'
   }
 `;
 
@@ -36,11 +59,13 @@ const AppDiv = styled.div`
 `;
 
 function App(props) {
-  const { fetchApi, token } = props;
+  const { fetchApi, authenticate, token } = props;
 
   useEffect(() => {
+    const localToken = localStorage.getItem("token");
     fetchApi(fetchAll);
-  }, [fetchApi]);
+    return localToken ? authenticate(localToken) : null;
+  }, [fetchApi, authenticate]);
 
   return (
     <AppDiv>
@@ -63,7 +88,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchApi })(App);
+export default connect(mapStateToProps, { fetchApi, authenticate })(App);
 
 App.defaultProps = {
   token: null,
