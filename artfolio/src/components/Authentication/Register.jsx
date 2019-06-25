@@ -44,7 +44,7 @@ function mapPropsToValues() {
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 const twitterRegEx = /\s([@#][\w_-]{1,15})/;
 
-const valSchema = async () => (
+const valSchema = () => (
   Yup.object().shape({
     username: Yup.string(registerInvalid.username).min(6).required(registerRequired.username),
     email: Yup.string().email(registerInvalid.email).required(registerRequired.email),

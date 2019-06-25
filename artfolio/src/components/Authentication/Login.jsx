@@ -25,7 +25,7 @@ function mapPropsToValues() {
   };
 }
 
-const valSchema = async () => (
+const valSchema = () => (
   Yup.object().shape({
     email: Yup.string().email(loginInvalid.email).required(requiredLogin.email),
     password: Yup.string().min(8, loginInvalid.password).required(requiredLogin.password),
