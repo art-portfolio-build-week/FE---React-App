@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import pt from "prop-types";
 import { postToEdit } from "../../../redux/actions/actionCreators";
 
@@ -7,9 +8,19 @@ function PostList(props) {
   const { postToEdit, post } = props;
   const { description, imgURL, username } = post;
 
+  const [isEditing, updateIsEditing] = useState(false);
+
+  useEffect(() => {
+    updateIsEditing(false);
+  }, [updateIsEditing]);
+
   const onClick = () => {
     postToEdit(props.post);
+    updateIsEditing(true);
   };
+  if (isEditing) {
+    return <Redirect to="/postart" />;
+  }
 
   return (
     <article>
