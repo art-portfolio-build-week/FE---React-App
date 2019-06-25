@@ -10,29 +10,38 @@ function Login(props) {
   const { errors, touched } = props;
   return (
     <Form>
+      <h2>Email Address</h2>
       <Field type="text" name="email" placeholder="johndoe@email.com" />
       {touched.email && errors.email && <p>{errors.email}</p>}
+      <h2>Password</h2>
       <Field type="password" name="password" placeholder="1234Love is the most used password" />
       {touched.password && errors.password && <p>{errors.password}</p>}
       <button type="submit">Login</button>
     </Form>
   );
 }
+function mapPropsToValues() {
+  return {
+    email: "",
+    password: "",
+  };
+}
 
-const LoginFormik = withFormik({
-  mapPropsToValues() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  validationSchema: Yup.object().shape({
+const valSchema = () => (
+  Yup.object().shape({
     email: Yup.string().email(loginInvalid.email).required(requiredLogin.email),
     password: Yup.string().min(8, loginInvalid.password).required(requiredLogin.password),
-  }),
-  handleSubmit(values, { props, setSubmitting }) {
-    // { resetForm, setErrors, setSubmitting } pass as second arg if server sends back error
-    props.loginUser(values);
+  })
+);
+
+const LoginFormik = withFormik({
+  mapPropsToValues,
+  validationSchema: valSchema,
+  handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
+    const errors = await props.loginUser(values);
+    if (errors) {
+      setErrors(errors);
+    }
     setSubmitting(false);
   },
 })(Login);
