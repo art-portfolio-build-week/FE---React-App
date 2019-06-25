@@ -3,7 +3,7 @@ import * as types from "./actionTypes";
 import * as URL from "../../constants";
 
 // Authentication
-const setAuthToState = token => ({
+export const authenticate = token => ({
   type: types.AUTHENTICATE,
   payload: token,
 });
@@ -16,7 +16,7 @@ const setAuthMessageToState = message => ({
 export const loginUser = payload => dispatch => {
   axiosAuth().post(URL.login, payload)
     .then(res => {
-      dispatch(setAuthToState(res.data.token));
+      dispatch(authenticate(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
       localStorage.setItem("token", res.data.token);
     })
@@ -28,7 +28,7 @@ export const loginUser = payload => dispatch => {
 export const registerUser = payload => dispatch => {
   axiosAuth().post(URL.register, payload)
     .then(res => {
-      dispatch(setAuthToState(res.data.token));
+      dispatch(authenticate(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
     })
     .catch(err => {
