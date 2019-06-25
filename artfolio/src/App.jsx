@@ -3,13 +3,12 @@ import styled, { createGlobalStyle } from "styled-components";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
-import { fetchApi, authenticate } from "./redux/actions/actionCreators";
+import { authenticate } from "./redux/actions/actionCreators";
 import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import PostForm from "./components/Posts/Forms/postForm";
-import PostContainer from "./components/Posts/Posts/PostContainer";
-import { fetchAll } from "./constants";
+import Gallery from "./components/Posts/Posts/Gallery";
 import lobster from "./assets/fonts/Lobster/Lobster-Regular.ttf";
 import latoRegular from "./assets/fonts/Lato/Lato-Regular.ttf";
 import latoBold from "./assets/fonts/Lato/Lato-Bold.ttf";
@@ -59,13 +58,14 @@ const AppDiv = styled.div`
 `;
 
 function App(props) {
-  const { fetchApi, authenticate, token } = props;
+  const { authenticate, token } = props;
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
-    fetchApi(fetchAll);
-    return localToken ? authenticate(localToken) : null;
-  }, [fetchApi, authenticate]);
+    if (localToken) {
+      authenticate(localToken);
+    }
+  }, [token]);
 
   return (
     <AppDiv>
@@ -74,7 +74,7 @@ function App(props) {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
-      <Route exact path="/" component={PostContainer} />
+      <Route exact path="/" component={Gallery} />
     </AppDiv>
   );
 }
@@ -88,13 +88,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchApi, authenticate })(App);
+export default connect(mapStateToProps, { authenticate })(App);
 
 App.defaultProps = {
   token: null,
 };
 
 App.propTypes = {
-  fetchApi: pt.func.isRequired,
   token: pt.string,
 };

@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import pt from "prop-types";
 import { connect } from "react-redux";
 import PostList from "./PostList";
+import { fetchApi } from "../../../redux/actions/actionCreators";
+import { fetchAll } from "../../../constants";
 
-function PostContainer(props) {
-  const { postList } = props;
+function Gallery(props) {
+  const { postList, fetchApi } = props;
+
+  useEffect(() => {
+    fetchApi(fetchAll);
+  }, []);
+
   return (
     <PostList postList={postList} />
   );
@@ -16,9 +23,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(PostContainer);
+export default connect(mapStateToProps, { fetchApi })(Gallery);
 
-PostContainer.propTypes = {
+Gallery.propTypes = {
   postList: pt.arrayOf(pt.shape({
     id: pt.number,
     username_id: pt.number,
