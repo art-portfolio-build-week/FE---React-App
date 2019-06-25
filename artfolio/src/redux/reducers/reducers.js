@@ -11,6 +11,10 @@ const authState = {
   authMessage: null,
 };
 
+const postToEdit = {
+  toBeEdited: null,
+};
+
 export function postReducer(state = initalState, action) {
   switch (action.type) {
     case types.FETCH_API:
@@ -30,6 +34,15 @@ export function authReducer(state = authState, action) {
       return { ...state, token: action.payload };
     case types.AUTH_MESSAGE:
       return { ...state, authMessage: action.payload };
+    default:
+      return state;
+  }
+}
+
+export function editPostReducer(state = postToEdit, action) {
+  switch (action.type) {
+    case types.POST_TO_EDIT:
+      return { ...state, toBeEdited: action.payload };
     default:
       return state;
   }
