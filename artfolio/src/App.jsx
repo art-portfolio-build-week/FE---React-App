@@ -65,7 +65,7 @@ function App(props) {
     if (localToken) {
       authenticate(localToken);
     }
-  }, [token]);
+  }, [token, authenticate]);
 
   return (
     <AppDiv>

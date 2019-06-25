@@ -10,7 +10,7 @@ function Gallery(props) {
 
   useEffect(() => {
     fetchApi(fetchAll);
-  }, []);
+  }, [fetchApi]);
 
   return (
     <PostList postList={postList} />

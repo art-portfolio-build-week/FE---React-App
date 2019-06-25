@@ -7,7 +7,7 @@ export default function ({ token }) {
   return (
     <HeaderTag>
       <nav>
-        <a href="#"><h1>Artista</h1></a>
+        <a href="google.com"><h1>Artista</h1></a>
         <input />
         <NavLink to="/">Galleries</NavLink>
         <NavLink to="/postart">Add A New Post</NavLink>
