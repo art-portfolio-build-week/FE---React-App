@@ -5,33 +5,62 @@ import * as Yup from "yup";
 import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
+import styled from "styled-components";
+
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  section{
+    display: flex;
+    justify-content: space-between;
+    div{
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+    }
+  }
+`;
 
 function Register(props) {
   const { errors, touched } = props;
 
   return (
-    <Form>
-      <h1>Signup to artfolio</h1>
-      <Field type="text" name="username" />
-      <Field type="text" name="email" />
+    <StyledForm>
+      <h2>First Name</h2>
+      <Field type="text" name="fistName" placeholder="John" />
+
+      <h2>Last Name</h2>
+      <Field type="text" name="lastName" placeholder="Doe" />
+
+      <h2>Email Adress</h2>
+      <Field type="text" name="email" placeholder="johndoe@email.com" />
+
+      <h2>Date Of Birth</h2>
       <Field type="date" name="dob" min="1903-01-02" max="2006-01-01" />
-      <h2>Enter Your password</h2>
-      <Field type="password" name="password" />
-      <Field type="password" name="passwordConfirm" />
+      <section>
+        <div>
+          <h2>Password</h2>
+          <Field type="password" name="password" />
+        </div>
+        <div>
+          <h2>Password Confirmation</h2>
+          <Field type="password" name="passwordConfirm" />
+        </div>
+      </section>
       {errors.passwordConfirm && <p>{errors.passwordConfirm}</p>}
-      <h2>Connect your social media</h2>
       <Field type="text" name="igHandle" />
       {touched.igHandle && errors.igHandle && <p>{errors.igHandle}</p>}
       <Field type="text" name="twHandle" />
       {touched.igHandle && errors.twHandle && <p>{errors.twHandle}</p>}
       <button type="submit">Register</button>
-    </Form>
+    </StyledForm>
   );
 }
 
 function mapPropsToValues() {
   return {
-    username: "",
+    fistName: "",
+    lastName: "",
     email: "",
     dob: "",
     password: "",
@@ -44,9 +73,9 @@ function mapPropsToValues() {
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 const twitterRegEx = /\s([@#][\w_-]{1,15})/;
 
-const valSchema = () => (
+const valSchema = async () => (
   Yup.object().shape({
-    username: Yup.string(registerInvalid.username).min(6).required(registerRequired.username),
+    // username: Yup.string(registerInvalid.username).min(6).required(registerRequired.username),
     email: Yup.string().email(registerInvalid.email).required(registerRequired.email),
     dob: Yup.date(registerInvalid.dob).required(registerRequired.dob),
     password: Yup.string().min(8, registerInvalid.password).required(registerRequired.password),
@@ -61,10 +90,11 @@ const RegisterFormik = withFormik({
   mapPropsToValues,
   handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
     const newUser = {
-      username: values.username,
+      username: `${values.fistName} ${values.lastName}`,
       password: values.password,
       email: values.email,
     };
+    console.log(newUser)
     const errors = await props.registerUser(newUser);
     if (errors) {
       setErrors(errors);
