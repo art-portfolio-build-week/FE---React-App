@@ -6,7 +6,7 @@ export default function () {
     : false;
 
   return axios.create({
-    header: {
+    headers: {
       authorization: token,
     },
   });
