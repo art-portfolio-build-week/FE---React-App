@@ -10,9 +10,16 @@ export default function ({ token }) {
         <a href="#"><h1>Artista</h1></a>
         <input />
         <NavLink to="/">Galleries</NavLink>
-        <NavLink to="/postart">AddForm</NavLink>
-        <NavLink to="/register">Sign Up</NavLink>
-        <NavLink to="/login">Log In</NavLink>
+        <NavLink to="/postart">Add A New Post</NavLink>
+        {token ? (
+          <NavLink>Name</NavLink>
+        ) : (
+          <React.Fragment>
+            <NavLink to="/register">Sign Up</NavLink>
+            <NavLink to="/login">Log In</NavLink>
+          </React.Fragment>
+        )
+        }
         <img src={userSVG} alt="user" />
       </nav>
       {!token && <BottomContent />}
