@@ -3,33 +3,42 @@ import * as types from "./actionTypes";
 import * as URL from "../../constants";
 
 // Authentication
+const setAuthToState = token => ({
+  type: types.AUTHENTICATE,
+  payload: token,
+});
+
+const setAuthMessageToState = message => ({
+  type: types.AUTH_MESSAGE,
+  payload: message,
+});
+
 export const loginUser = payload => dispatch => {
   axiosAuth().post(URL.login, payload)
-    .then((res) => {
-      dispatch({ type: types.AUTHENTICATE, payload: res.data.token });
+    .then(res => {
+      dispatch(setAuthToState(res.data.token));
+      dispatch(setAuthMessageToState(res.data.message));
     })
     .catch(err => {
-      console.log(err.message);
-      dispatch({ type: types.AUTH_FAIL, payload: err });
+      dispatch(setAuthMessageToState(err.message));
     });
 };
 
 export const registerUser = payload => dispatch => {
   axiosAuth().post(URL.register, payload)
-    .then((res) => {
-      console.log(res)
-      dispatch({ type: types.AUTHENTICATE, payload: res.data.token });
+    .then(res => {
+      dispatch(setAuthToState(res.data.token));
+      dispatch(setAuthMessageToState(res.data.message));
     })
     .catch(err => {
-      console.log(err.message);
-      dispatch({ type: types.AUTH_FAIL, payload: err });
+      dispatch(setAuthMessageToState(err.message));
     });
 };
 
 // Post
 export const fetchApi = URL => dispatch => {
   axiosAuth().get(URL)
-    .then((res) => {
+    .then(res => {
       dispatch({ type: types.FETCHING_OK, payload: res.data });
     })
     .catch(err => {
@@ -41,11 +50,6 @@ export const fetchApi = URL => dispatch => {
     });
 };
 
+export const addPost = payload => dispatch => null;
 
-export const addPost = payload => (dispatch) => {
-  return null;
-};
-
-export const deletePost = () => (dispatch) => {
-  return null;
-};
+export const deletePost = () => dispatch => null;
