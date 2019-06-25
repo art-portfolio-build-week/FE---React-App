@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
@@ -30,35 +30,46 @@ body, html{
   }
 `;
 
+const AppDiv = styled.div`
+  max-width: 825px;
+  width: 100%;
+`;
+
 function App(props) {
-  const { fetchApi } = props;
+  const { fetchApi, token } = props;
 
   useEffect(() => {
     fetchApi(fetchAll);
   }, [fetchApi]);
 
   return (
-    <div className="app">
+    <AppDiv>
       <GlobalStyle />
-      <Header />
+      <Header token={token} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
       <Route exact path="/" component={PostContainer} />
-    </div>
+    </AppDiv>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    postList: state.postList,
-    isFetching: state.postList,
-    errorMessage: state.errorMessage,
+    postList: state.postState.postList,
+    isFetching: state.postState.postList,
+    errorMessage: state.postState.errorMessage,
+    token: state.authState.token,
   };
 }
 
 export default connect(mapStateToProps, { fetchApi })(App);
 
+App.defaultProps = {
+  token: null,
+};
+
 App.propTypes = {
   fetchApi: pt.func.isRequired,
+  token: pt.string,
 };
