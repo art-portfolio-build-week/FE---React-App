@@ -2,10 +2,10 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
+import styled from "styled-components";
 import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
-import styled from "styled-components";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -94,7 +94,6 @@ const RegisterFormik = withFormik({
       password: values.password,
       email: values.email,
     };
-    console.log(newUser)
     const errors = await props.registerUser(newUser);
     if (errors) {
       setErrors(errors);
