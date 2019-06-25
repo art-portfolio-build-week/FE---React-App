@@ -12,7 +12,7 @@ export default function ({ token }) {
         <NavLink to="/">Galleries</NavLink>
         <NavLink to="/postart">Add A New Post</NavLink>
         {token ? (
-          <NavLink>Name</NavLink>
+          <NavLink to="#">Name</NavLink>
         ) : (
           <React.Fragment>
             <NavLink to="/register">Sign Up</NavLink>
