@@ -1,14 +1,19 @@
 import React from "react";
 import pt from "prop-types";
+import styled from "styled-components";
 import PostCard from "./PostCard";
-// import { connect } from "react-redux";
+
+const Div = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default function PostList(props) {
   const { postList } = props;
   return (
-    <div>
+    <Div>
       {postList.map(post => <PostCard key={post.id} post={post} />)}
-    </div>
+    </Div>
   );
 }
 
