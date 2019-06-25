@@ -44,9 +44,8 @@ function mapPropsToValues() {
 const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 const twitterRegEx = /\s([@#][\w_-]{1,15})/;
 
-const RegisterFormik = withFormik({
-  mapPropsToValues,
-  validationSchema: Yup.object().shape({
+const valSchema = async () => (
+  Yup.object().shape({
     username: Yup.string(registerInvalid.username).min(6).required(registerRequired.username),
     email: Yup.string().email(registerInvalid.email).required(registerRequired.email),
     dob: Yup.date(registerInvalid.dob).required(registerRequired.dob),
@@ -54,9 +53,22 @@ const RegisterFormik = withFormik({
     passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], registerInvalid.passwordConfirm).required(registerRequired.passwordConfirm),
     igHandle: Yup.string().matches(instagramRegEx, registerInvalid.igHandle),
     twHandle: Yup.string().matches(twitterRegEx, registerInvalid.twHandle),
-  }),
-  handleSubmit(values, { props, setSubmitting }) {
-    props.registerUser(values);
+  })
+);
+
+const RegisterFormik = withFormik({
+  validationSchema: valSchema,
+  mapPropsToValues,
+  handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
+    const newUser = {
+      username: values.username,
+      password: values.password,
+      email: values.email,
+    };
+    const errors = await props.registerUser(newUser);
+    if (errors) {
+      setErrors(errors);
+    }
     setSubmitting(false);
   },
 })(Register);
