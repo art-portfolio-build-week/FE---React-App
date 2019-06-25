@@ -6,6 +6,7 @@ import { fetchApi } from "./redux/actions/actionCreators";
 import Nav from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
+import PostForm from "./components/Posts/Forms/postForm"
 import { fetchAll } from "./constants";
 
 function App(props) {
@@ -20,6 +21,7 @@ function App(props) {
       <Nav />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/postart" component={PostForm} />
     </div>
   );
 }
