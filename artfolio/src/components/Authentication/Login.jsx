@@ -10,8 +10,10 @@ function Login(props) {
   const { errors, touched } = props;
   return (
     <Form>
+      <h2>Email Address</h2>
       <Field type="text" name="email" placeholder="johndoe@email.com" />
       {touched.email && errors.email && <p>{errors.email}</p>}
+      <h2>Password</h2>
       <Field type="password" name="password" placeholder="1234Love is the most used password" />
       {touched.password && errors.password && <p>{errors.password}</p>}
       <button type="submit">Login</button>
