@@ -11,4 +11,5 @@ export const headerButtonHover = polishedGold;
 export const HeaderBgColor = deepSeaBlueDarker;
 export const navLinks = white;
 export const navInput = seaBlue;
+export const activeLink = polishedGold;
 export const navInputBorder = deepSeaBlue;

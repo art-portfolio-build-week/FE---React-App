@@ -9,6 +9,7 @@ export const HeaderTag = styled.header`
     font-size: 2.8rem;
     font-weight: bold;
     transition: 0.2s;
+    padding-bottom: 0.2rem;
     &:hover{
       color: ${colors.sadBlue};
       transition: 0.2s;
@@ -16,6 +17,10 @@ export const HeaderTag = styled.header`
     @media (max-width: 760px){
         margin: 1rem;
       }
+    &.active{
+      /* border-bottom: 2px solid ${colors.activeLink} */
+      color: ${colors.activeLink};
+    }
   }
   nav {
     position: relative;
