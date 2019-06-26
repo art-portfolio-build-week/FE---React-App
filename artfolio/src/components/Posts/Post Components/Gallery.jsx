@@ -31,7 +31,7 @@ export default connect(mapStateToProps, { fetchApi })(Gallery);
 
 Gallery.defaultProps = {
   token: null,
-}
+};
 
 Gallery.propTypes = {
   fetchApi: pt.func.isRequired,
