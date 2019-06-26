@@ -88,6 +88,7 @@ function App(props) {
       <Route path="/postart" component={PostForm} />
       <Route exact path="/" component={Gallery} />
       <Route path="/post/:id" component={PostPage} />
+      <Route path="*" render={(props) => <p>Nope</p>} />
     </AppDiv>
   );
 }
