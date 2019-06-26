@@ -11,7 +11,7 @@ export default function Header({ token, loggedUser }) {
         <a href="google.com"><h1>Artista</h1></a>
         <input type="text" name="search-query" />
         <section>
-          <NavLink to="/">Galleries</NavLink>
+          <NavLink exact to="/">Galleries</NavLink>
           <NavLink to="/postart">Add A New Post</NavLink>
           {token ? (
             <NavLink to="#">{loggedUser}</NavLink>
