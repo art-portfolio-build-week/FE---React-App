@@ -2,7 +2,7 @@ import styled from "styled-components";
 import * as colors from "../../assets/styling";
 
 export const HeaderTag = styled.header`
-  a {
+  a, .user {
     text-decoration: none;
     color: ${colors.navLinks};
     font-size: 2.8rem;
@@ -21,6 +21,7 @@ export const HeaderTag = styled.header`
       border-bottom: 2px solid ${colors.activeLink}
     }
   }
+
   nav {
     position: relative;
     display: flex;

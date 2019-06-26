@@ -18,10 +18,10 @@ export default function Header({ token, loggedUser }) {
           <NavLink exact to="/find-artists">Find Artists</NavLink>
           {token && <NavLink to="/postart">Add A New Post</NavLink>}
           {token ? (
-            <div className="user">
-              <NavLink to="#">{loggedUser}</NavLink>
+            <NavLink className="user">
+              <h4>{loggedUser}</h4>
               <img src={userSVG} alt="user" />
-            </div>
+            </NavLink>
           ) : (
             <React.Fragment>
               <NavLink to="/register">Sign Up</NavLink>
