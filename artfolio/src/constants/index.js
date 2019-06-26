@@ -1,10 +1,11 @@
 // URL
-export const login = "https://art-draft.herokuapp.com/api/login";
-export const register = "https://art-draft.herokuapp.com/api/register";
+export const login = "https://artista-backend.herokuapp.com/api/login";
+export const register = "https://artista-backend.herokuapp.com/api/register";
 
-export const fetchAll = "https://art-draft.herokuapp.com/api/posts";
-export const addPost = "https://art-draft.herokuapp.com/api/posts";
-export const putPost = id => `https://art-draft.herokuapp.com/api/posts/${id}`;
+export const fetchAll = "https://artista-backend.herokuapp.com/api/posts";
+export const getPostById = id => `https://artista-backend.herokuapp.com/api/posts/${id}`;
+export const addPost = "https://artista-backend.herokuapp.com/api/posts";
+export const putPost = id => `https://artista-backend.herokuapp.com/api/posts/${id}`;
 
 // Error Messages
 export const loginInvalid = {

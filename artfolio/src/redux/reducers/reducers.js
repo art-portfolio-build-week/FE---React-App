@@ -9,6 +9,7 @@ const initalState = {
 const authState = {
   token: null,
   authMessage: null,
+  loggedUser: null,
 };
 
 const postToEdit = {
@@ -34,6 +35,8 @@ export function authReducer(state = authState, action) {
       return { ...state, token: action.payload };
     case types.AUTH_MESSAGE:
       return { ...state, authMessage: action.payload };
+    case types.LOGGED_USER:
+      return { ...state, loggedUser: action.payload };
     default:
       return state;
   }

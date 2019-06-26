@@ -8,6 +8,14 @@ export const authenticate = token => ({
   payload: token,
 });
 
+export const setLoggedUser = username => {
+  const user = username.split(" ");
+  return {
+    type: types.LOGGED_USER,
+    payload: `${user[0]} ${user[1].charAt(0)}.`,
+  };
+};
+
 const setAuthMessageToState = message => ({
   type: types.AUTH_MESSAGE,
   payload: message,
@@ -18,7 +26,9 @@ export const loginUser = payload => dispatch => {
     .then(res => {
       dispatch(authenticate(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
+      dispatch(setLoggedUser(res.data.username));
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("username", res.data.username);
     })
     .catch(err => {
       dispatch(setAuthMessageToState(err.message));
@@ -30,6 +40,9 @@ export const registerUser = payload => dispatch => {
     .then(res => {
       dispatch(authenticate(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
+      dispatch(setLoggedUser(res.data.username));
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("username", res.data.username);
     })
     .catch(err => {
       dispatch(setAuthMessageToState(err.message));

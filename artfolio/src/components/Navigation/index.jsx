@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { HeaderTag, Button, BottomDiv } from "./css";
 import userSVG from "../../assets/svg/user.svg";
 
-export default function ({ token }) {
+export default function ({ token, loggedUser }) {
   return (
     <HeaderTag>
       <nav>
@@ -12,7 +12,7 @@ export default function ({ token }) {
         <NavLink to="/">Galleries</NavLink>
         <NavLink to="/postart">Add A New Post</NavLink>
         {token ? (
-          <NavLink to="#">Name</NavLink>
+          <NavLink to="#">{loggedUser}</NavLink>
         ) : (
           <React.Fragment>
             <NavLink to="/register">Sign Up</NavLink>

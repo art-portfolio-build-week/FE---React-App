@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
-import { authenticate } from "./redux/actions/actionCreators";
+import { authenticate, setLoggedUser } from "./redux/actions/actionCreators";
 import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
@@ -58,19 +58,21 @@ const AppDiv = styled.div`
 `;
 
 function App(props) {
-  const { authenticate, token } = props;
-
+  const { authenticate, token, loggedUser, setLoggedUser } = props;
+  console.log(loggedUser)
   useEffect(() => {
     const localToken = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
     if (localToken) {
       authenticate(localToken);
+      setLoggedUser(username);
     }
   }, [token, authenticate]);
 
   return (
     <AppDiv>
       <GlobalStyle />
-      <Header token={token} />
+      <Header token={token} loggedUser={loggedUser} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
@@ -80,15 +82,17 @@ function App(props) {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     postList: state.postState.postList,
     isFetching: state.postState.postList,
     errorMessage: state.postState.errorMessage,
     token: state.authState.token,
+    loggedUser: state.authState.loggedUser,
   };
 }
 
-export default connect(mapStateToProps, { authenticate })(App);
+export default connect(mapStateToProps, { authenticate, setLoggedUser })(App);
 
 App.defaultProps = {
   token: null,
