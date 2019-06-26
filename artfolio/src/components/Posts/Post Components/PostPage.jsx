@@ -69,7 +69,7 @@ function PostPage(props) {
   useEffect(() => {
     const pageId = match.params.id;
     fetchById(getPostById(pageId));
-  }, [fetchById]);
+  }, [fetchById, match]);
 
   if (isFetching) {
     return <p>Loading</p>;
