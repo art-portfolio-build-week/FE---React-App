@@ -64,15 +64,16 @@ export const fetchApi = URL => dispatch => {
 };
 
 export const fetchById = URL => dispatch => {
+  debugger;
   axiosAuth().get(URL)
     .then(res => {
-      dispatch({ type: types.FETCH_BY_ID, payload: res.data });
+      dispatch({ type: types.FETCH_BY_ID_OK, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: types.FETCHING_FAIL, payload: err });
+      dispatch({ type: types.FETCH_BY_ID_FAIL, payload: err });
     })
     .finally(() => {
-      dispatch({ type: types.FETCH_API, payload: false });
+      dispatch({ type: types.FETCH_BY_ID, payload: false });
     });
 };
 

@@ -2,7 +2,6 @@ import * as types from "../actions/actionTypes";
 
 const initalState = {
   postList: [],
-  postById: null,
   isFetching: true,
   errorMessage: null,
 };
@@ -17,6 +16,12 @@ const postToEdit = {
   toBeEdited: null,
 };
 
+const idState = {
+  postById: null,
+  isFetchingId: true,
+  errorMessageId: null,
+};
+
 export function postReducer(state = initalState, action) {
   switch (action.type) {
     case types.FETCH_API:
@@ -27,6 +32,19 @@ export function postReducer(state = initalState, action) {
       return { ...state, errorMessage: action.payload };
     case types.FETCH_BY_ID:
       return { ...state, postById: action.payload };
+    default:
+      return state;
+  }
+}
+
+export function postIdReducer(state = idState, action) {
+  switch (action.type) {
+    case types.FETCH_BY_ID:
+      return { ...state, isFetchingId: action.payload };
+    case types.FETCH_BY_ID_OK:
+      return { ...state, postById: action.payload };
+    case types.FETCH_BY_ID_FAIL:
+      return { ...state, errorMessageId: action.payload };
     default:
       return state;
   }
