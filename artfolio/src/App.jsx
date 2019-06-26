@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
 import { authenticate, setLoggedUser } from "./redux/actions/actionCreators";
+
+// Components
 import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
@@ -11,7 +13,7 @@ import PostForm from "./components/Posts/Forms/postForm";
 import Gallery from "./components/Posts/Post Components/Gallery";
 import PostPage from "./components/Posts/Post Components/PostPage";
 
-// import fonts
+// Import fonts
 import lobster from "./assets/fonts/Lobster/Lobster-Regular.ttf";
 import latoRegular from "./assets/fonts/Lato/Lato-Regular.ttf";
 import latoBold from "./assets/fonts/Lato/Lato-Bold.ttf";
