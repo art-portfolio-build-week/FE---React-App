@@ -118,7 +118,7 @@ function PostForm(props) {
         <img src={lenseImage} alt="lense" />
         <StyledForm>
           <h2>Title</h2>
-          <Field type="text" name="title" placeholder="Is that a plane?" />
+          {/* <Field type="text" name="title" placeholder="Is that a plane?" /> */}
           <h2>Description</h2>
           <Field type="text" name="description" component="textarea" placeholder="Superman saves the world again!" />
           <h2>Image Url</h2>
@@ -180,7 +180,8 @@ PostForm.defaultProps = {
 };
 
 PostForm.propTypes = {
-  history: pt.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: pt.object,
   toBeEdited: pt.shape({
     id: pt.number,
     username_id: pt.number,
