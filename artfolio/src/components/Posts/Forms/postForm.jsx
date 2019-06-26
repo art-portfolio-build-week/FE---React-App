@@ -39,15 +39,28 @@ const StyledForm = styled(Form)`
     background-color: #153D5B;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     border-radius: 1.5rem;
-    border: none;
+    border: 3px solid #153D5B;
     margin-top: 0.5rem;
+    transition: 0.2s;
     margin-bottom: 3.5rem;
+    cursor: pointer;
+    &:hover{
+      transition: 0.2s;
+      background-color: #12973c;
+      color: #171D21;
+      border: 3px solid #171D21;
+    }
   }
   button:last-of-type{
     margin-top: 0;
     background-color: white;
     color: #171D21;
     border: 3px solid #171D21;
+    &:hover{
+      transition: 0.2s;
+      background-color: #a22119;
+      color: white;
+    }
   }
   textarea{
     height: 25rem;

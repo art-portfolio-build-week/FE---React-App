@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import * as colors from "../../assets/styling";
-
+import banner from "../../assets/images/galleryBanner.png"
 export const HeaderTag = styled.header`
   a {
     text-decoration: none;
     color: ${colors.navLinks};
     font-size: 2.8rem;
     font-weight: bold;
+    transition: 0.2s;
     &:hover{
       color: ${colors.sadBlue};
+      transition: 0.2s;
     }
     @media (max-width: 760px){
         margin: 1rem;
@@ -72,10 +74,12 @@ export const HeaderTag = styled.header`
 export const Button = styled.button`
   background-color: ${colors.headerButton};
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
-  padding: 1.2rem 2rem;
+  padding: 2rem 3.5rem;
   margin: 1.5rem 0;
+  border-radius: 1.5rem;
+  cursor: pointer;
   &:hover{
     background-color: ${colors.headerButtonHover};
   }
@@ -83,8 +87,10 @@ export const Button = styled.button`
 
 export const BottomDiv = styled.div`
   padding: 0 4.1rem;
-  height: 18.5rem;
-  background-color: ${colors.sadBlue};
+  height: 27rem;
+  background-image: url(${banner});
+  background-repeat: no-repeat;
+  background-size: cover;
   div {
     display: flex;
     align-items: flex-start;
@@ -92,8 +98,11 @@ export const BottomDiv = styled.div`
     h2 {
       align-self: flex-end;
       margin-bottom: 2rem;
-      font-size: 2.6rem;
-      color: ${colors.navLinks};
+      font-size: 3.6rem;
+      font-weight: bold;
+      text-shadow: 0px 0px 6px #000000;
+      color: white;
+      font-family: "lato", sans-serif;
     }
   }
 `;

@@ -33,8 +33,8 @@ export default function ({ token, loggedUser }) {
 function BottomContent() {
   return (
     <BottomDiv>
-      <div><h2>Gallery</h2></div>
-      <div><Button type="button">Sign me up!</Button></div>
+      <div><h2>Welcome to Artista! Lets us show off your work!</h2></div>
+      <div><NavLink to="/register"><Button type="button">Sign me up!</Button></NavLink></div>
     </BottomDiv>
   );
 }

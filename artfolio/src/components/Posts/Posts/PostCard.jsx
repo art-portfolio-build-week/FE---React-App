@@ -9,14 +9,22 @@ import { putPost } from "../../../constants";
 const Article = styled.article`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 30rem;
   width: 25rem;
+  transition: transform 0.2s;
   margin: 1.5rem;
-
+  padding: 1rem;
+  border-radius: 0.5rem;
+  &:hover{
+      transform: scale(1.02);
+      transition: 0.2s;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    }
   img{
     width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
   }
   h2{
     font-family: "lato";
@@ -30,6 +38,13 @@ const Article = styled.article`
     border-radius: 3.5rem;
     font-size: 1.5rem;
     padding: 0.5rem 1rem;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover{
+      color: white;
+      background-color: black;
+      transition: 0.2s;
+    }
   }
 `;
 
