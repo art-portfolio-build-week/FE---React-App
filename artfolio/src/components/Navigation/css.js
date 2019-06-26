@@ -17,11 +17,14 @@ export const HeaderTag = styled.header`
       }
   }
   nav {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: ${colors.HeaderBgColor};
     padding: 2rem;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.5);
+    z-index: 0;
     @media (max-width: 1250px){
         flex-direction: column;
       }
@@ -91,6 +94,7 @@ export const BottomDiv = styled.div`
   background-image: url(${banner});
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 1;
   div {
     display: flex;
     align-items: flex-start;
