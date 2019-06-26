@@ -10,13 +10,31 @@ export const HeaderTag = styled.header`
     &:hover{
       color: ${colors.sadBlue};
     }
+    @media (max-width: 760px){
+        margin: 1rem;
+      }
   }
   nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background: ${colors.HeaderBgColor};
-    height: 8rem;
+    padding: 2rem;
+    @media (max-width: 1250px){
+        flex-direction: column;
+      }
+    section{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 50%;
+      @media (max-width: 1250px){
+        width: 100%;
+      }
+      @media (max-width: 760px){
+        flex-direction: column;
+      }
+    }
   }
   h1 {
     font-family: "lobster", cursive;
@@ -24,10 +42,17 @@ export const HeaderTag = styled.header`
     letter-spacing: 0.2rem;
     color: ${colors.navLinks};
     margin: 0 1.8rem;
+    @media (max-width: 1250px){
+      font-size: 3.6rem;
+      margin-bottom: 1rem;
+      }
   }
   img{
     height: 6rem;
     margin-right: 1.25rem;
+    @media (max-width: 760px){
+        display: none;
+      }
   }
   input{
     background-color: ${colors.navInput};
@@ -36,7 +61,11 @@ export const HeaderTag = styled.header`
     height: 3rem;
     width: 30rem;
     padding: 0.2rem 0.5rem;
-    color: ${colors.navLinks}
+    color: ${colors.navLinks};
+    @media (max-width: 1250px){
+      font-size: 3.6rem;
+      margin-bottom: 1rem;
+      }
   }
 `;
 

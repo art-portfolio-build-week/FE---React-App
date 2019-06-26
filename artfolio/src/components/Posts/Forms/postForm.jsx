@@ -17,12 +17,18 @@ const StyledForm = styled(Form)`
     border: 0.1rem solid #979797;
     border-radius: 0.2rem;
     margin-bottom: 2.5rem;
+    @media (max-width: 1250px){
+        width: 35rem;
+      }
   }
   h2{
     font-size:3.6rem;
     font-weight: bold;
     font-family: "lato";
     line-height: 1.8;
+    @media (max-width: 1250px){
+      font-size: 3rem;
+      }
   }
   button{
     align-self: center;
@@ -67,16 +73,24 @@ const Div = styled.div`
     font-size: 4rem;
     font-weight: bold;
     font-family: "lato";
+    @media (max-width: 1250px){
+        align-self: initial;
+        margin: 1rem;
+        font-size: 3.5rem;
+      }
   }
   section{
     display: flex;
-    width: 70%;
+    width: 100%;
     justify-content: space-around;
     align-items: center;
     img{
       height: 45rem;
       margin-bottom: 175px;
       box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+      @media (max-width: 950px){
+        display: none;
+      }
     }
   }
 `;
