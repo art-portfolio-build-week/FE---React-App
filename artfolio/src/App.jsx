@@ -8,7 +8,10 @@ import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import PostForm from "./components/Posts/Forms/postForm";
-import Gallery from "./components/Posts/Posts/Gallery";
+import Gallery from "./components/Posts/Post Components/Gallery";
+import PostPage from "./components/Posts/Post Components/PostPage";
+
+// import fonts
 import lobster from "./assets/fonts/Lobster/Lobster-Regular.ttf";
 import latoRegular from "./assets/fonts/Lato/Lato-Regular.ttf";
 import latoBold from "./assets/fonts/Lato/Lato-Bold.ttf";
@@ -82,6 +85,7 @@ function App(props) {
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
       <Route exact path="/" component={Gallery} />
+      <Route path="/post/:id" component={PostPage} />
     </AppDiv>
   );
 }
