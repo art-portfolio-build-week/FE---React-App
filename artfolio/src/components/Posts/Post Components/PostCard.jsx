@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import styled from "styled-components";
 import pt from "prop-types";
 import { postToEdit, editPost, fetchById } from "../../../redux/actions/actionCreators";
@@ -90,7 +90,7 @@ function PostList(props) {
       <h2>Artist: {username}</h2>
       {/* <button type="button" onClick={passToState}>Edit Post</button>
       {<button type="button" onClick={votePost}>Vote</button>} */}
-      <button onClick={viewMore} type="button">View More</button>
+      <Link to={`/post/${id}`}><button onClick={viewMore} type="button">View More</button></Link>
     </Article>
   );
 }
