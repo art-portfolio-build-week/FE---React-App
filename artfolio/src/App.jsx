@@ -100,11 +100,12 @@ export default connect(mapStateToProps, { authenticate, setLoggedUser })(App);
 
 App.defaultProps = {
   token: null,
+  loggedUser: null,
 };
 
 App.propTypes = {
   token: pt.string,
   authenticate: pt.func.isRequired,
-  loggedUser: pt.func.isRequired,
+  loggedUser: pt.string,
   setLoggedUser: pt.func.isRequired,
 };
