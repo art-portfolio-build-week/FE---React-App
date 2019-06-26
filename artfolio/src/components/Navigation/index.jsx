@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import pt from "prop-types";
-import { NavLink } from "react-router-dom";
-import { HeaderTag, Button, BottomDiv } from "./css";
+import { NavLink, Link } from "react-router-dom";
+import { HeaderTag } from "./css";
 import userSVG from "../../assets/svg/user.svg";
+import UserModal from "./UserModal";
 
 export default function Header({ token, loggedUser }) {
+  const [modal, updateModal] = useState("none");
+
   return (
     <HeaderTag>
       <nav>
-        <a href="google.com"><h1>Artista</h1></a>
+        <Link exact to="/"><h1>Artista</h1></Link>
         <input type="text" name="search-query" />
         <section>
           <NavLink exact to="/">Galleries</NavLink>
-          <NavLink to="/postart">Add A New Post</NavLink>
+          <NavLink exact to="/find-artists">Find Artists</NavLink>
+          {token && <NavLink to="/postart">Add A New Post</NavLink>}
           {token ? (
-            <NavLink to="#">{loggedUser}</NavLink>
+            <div className="user">
+              <NavLink to="#">{loggedUser}</NavLink>
+              <img src={userSVG} alt="user" />
+            </div>
           ) : (
             <React.Fragment>
               <NavLink to="/register">Sign Up</NavLink>
@@ -22,21 +29,10 @@ export default function Header({ token, loggedUser }) {
             </React.Fragment>
           )
           }
-          <img src={userSVG} alt="user" />
         </section>
       </nav>
-      {!token && <BottomContent />}
-
+      {/* <UserModal modal={modal} /> */}
     </HeaderTag>
-  );
-}
-
-function BottomContent() {
-  return (
-    <BottomDiv>
-      <div><h2>Welcome to Artista! Lets us show off your work!</h2></div>
-      <div><NavLink to="/register"><Button type="button">Sign me up!</Button></NavLink></div>
-    </BottomDiv>
   );
 }
 

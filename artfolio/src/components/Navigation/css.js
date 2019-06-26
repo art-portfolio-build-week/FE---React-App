@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import * as colors from "../../assets/styling";
-import banner from "../../assets/images/galleryBanner.png";
 
 export const HeaderTag = styled.header`
   a {
@@ -9,6 +8,7 @@ export const HeaderTag = styled.header`
     font-size: 2.8rem;
     font-weight: bold;
     transition: 0.2s;
+    margin: 0 2rem;
     padding-bottom: 0.2rem;
     &:hover{
       color: ${colors.sadBlue};
@@ -18,8 +18,7 @@ export const HeaderTag = styled.header`
         margin: 1rem;
       }
     &.active{
-      /* border-bottom: 2px solid ${colors.activeLink} */
-      color: ${colors.activeLink};
+      border-bottom: 2px solid ${colors.activeLink}
     }
   }
   nav {
@@ -38,12 +37,21 @@ export const HeaderTag = styled.header`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 50%;
       @media (max-width: 1250px){
         width: 100%;
       }
       @media (max-width: 760px){
         flex-direction: column;
+      }
+    }
+    .user{
+      display: flex;
+      align-items: center;
+      img{
+      height: 6rem;
+      margin: 0 1.25rem;
+      @media (max-width: 760px){
+        display: none;
       }
     }
   }
@@ -58,12 +66,6 @@ export const HeaderTag = styled.header`
       margin-bottom: 1rem;
       }
   }
-  img{
-    height: 6rem;
-    margin-right: 1.25rem;
-    @media (max-width: 760px){
-        display: none;
-      }
   }
   input{
     background-color: ${colors.navInput};
@@ -80,39 +82,4 @@ export const HeaderTag = styled.header`
   }
 `;
 
-export const Button = styled.button`
-  background-color: ${colors.headerButton};
-  border: none;
-  font-size: 2.2rem;
-  font-weight: bold;
-  padding: 2rem 3.5rem;
-  margin: 1.5rem 0;
-  border-radius: 1.5rem;
-  cursor: pointer;
-  &:hover{
-    background-color: ${colors.headerButtonHover};
-  }
-`;
-
-export const BottomDiv = styled.div`
-  padding: 0 4.1rem;
-  height: 27rem;
-  background-image: url(${banner});
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 1;
-  div {
-    display: flex;
-    align-items: flex-start;
-    height: 50%;
-    h2 {
-      align-self: flex-end;
-      margin-bottom: 2rem;
-      font-size: 3.6rem;
-      font-weight: bold;
-      text-shadow: 0px 0px 6px #000000;
-      color: white;
-      font-family: "lato", sans-serif;
-    }
-  }
-`;
+export default HeaderTag;
