@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import pt from "prop-types";
 import { postToEdit, editPost } from "../../../redux/actions/actionCreators";
+import { putPost } from "../../../constants";
 
 const Article = styled.article`
   height: 30rem;
@@ -37,7 +38,7 @@ function PostList(props) {
       updateIsLiked(false);
     }
     const votedObj = { ...props.post, votes: votes + 1 };
-    editPost(votedObj);
+    editPost(putPost(votedObj.id), votedObj);
     updateIsLiked(true);
   };
 
@@ -49,8 +50,8 @@ function PostList(props) {
     <Article>
       <h1>{votes}</h1>
       <img src={imgURL} alt="" />
-      <p>Title:{' '}{description}</p>
-      <h1>Artist: {' '}{username}</h1>
+      <p>Title: {description}</p>
+      <h1>Artist: {username}</h1>
       <button type="button" onClick={passToState}>Edit Post</button>
       {<button type="button" onClick={votePost}>Vote</button>}
     </Article>
