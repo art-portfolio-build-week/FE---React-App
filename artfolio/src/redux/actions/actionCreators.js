@@ -63,6 +63,19 @@ export const fetchApi = URL => dispatch => {
     });
 };
 
+export const fetchById = URL => dispatch => {
+  axiosAuth().get(URL)
+    .then(res => {
+      dispatch({ type: types.FETCH_BY_ID, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.FETCHING_FAIL, payload: err });
+    })
+    .finally(() => {
+      dispatch({ type: types.FETCH_API, payload: false });
+    });
+};
+
 export const addPost = payload => dispatch => {
   axiosAuth().post(URL.addPost, payload)
     .then(() => {

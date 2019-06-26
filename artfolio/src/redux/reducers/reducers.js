@@ -2,6 +2,7 @@ import * as types from "../actions/actionTypes";
 
 const initalState = {
   postList: [],
+  postById: null,
   isFetching: true,
   errorMessage: null,
 };
@@ -24,6 +25,8 @@ export function postReducer(state = initalState, action) {
       return { ...state, postList: action.payload };
     case types.FETCHING_FAIL:
       return { ...state, errorMessage: action.payload };
+    case types.FETCH_BY_ID:
+      return { ...state, postById: action.payload };
     default:
       return state;
   }

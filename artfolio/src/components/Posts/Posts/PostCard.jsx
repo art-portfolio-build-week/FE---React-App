@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import pt from "prop-types";
-import { postToEdit, editPost } from "../../../redux/actions/actionCreators";
-import { putPost } from "../../../constants";
+import { postToEdit, editPost, fetchById } from "../../../redux/actions/actionCreators";
+import { putPost, getPostById } from "../../../constants";
 
 const Article = styled.article`
   display: flex;
@@ -49,8 +49,8 @@ const Article = styled.article`
 `;
 
 function PostList(props) {
-  const { postToEdit, post } = props;
-  const { description, imgURL, username, votes } = post;
+  const { postToEdit, post, fetchById } = props;
+  const { description, imgURL, username, votes, id } = post;
 
   const [isEditing, updateIsEditing] = useState(false);
   const [isLiked, updateIsLiked] = useState(false);
@@ -62,6 +62,10 @@ function PostList(props) {
   const passToState = () => {
     postToEdit(props.post);
     updateIsEditing(true);
+  };
+
+  const viewMore = () => {
+    fetchById(getPostById(id));
   };
 
   const votePost = () => {
@@ -86,12 +90,12 @@ function PostList(props) {
       <h2>Artist: {username}</h2>
       {/* <button type="button" onClick={passToState}>Edit Post</button>
       {<button type="button" onClick={votePost}>Vote</button>} */}
-      <button>View More</button>
+      <button onClick={viewMore} type="button">View More</button>
     </Article>
   );
 }
 
-export default connect(state => state, { postToEdit, editPost })(PostList);
+export default connect(state => state, { postToEdit, editPost, fetchById })(PostList);
 
 PostList.defaultProps = {
   post: {},
@@ -99,6 +103,7 @@ PostList.defaultProps = {
 
 PostList.propTypes = {
   postToEdit: pt.func.isRequired,
+  fetchById: pt.func.isRequired,
   post: pt.shape({
     id: pt.number.isRequired,
     username_id: pt.number.isRequired,
