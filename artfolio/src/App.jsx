@@ -37,7 +37,7 @@ body, html{
     font-display: sans-serif
   }
 @font-face {
-    font-family: 'Lato';
+    font-family: 'LatoIta';
     src: url(${latoItalic});
     font-style: italic, oblique;
     font-display: sans-serif
@@ -53,8 +53,8 @@ body, html{
 `;
 
 const AppDiv = styled.div`
-  max-width: 825px;
-  width: 100%;
+  /* max-width: 825px;
+  width: 100%; */
 `;
 
 function App(props) {

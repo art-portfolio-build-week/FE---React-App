@@ -5,7 +5,7 @@ export const HeaderTag = styled.header`
   a {
     text-decoration: none;
     color: ${colors.navLinks};
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     font-weight: bold;
     &:hover{
       color: ${colors.sadBlue};
@@ -16,23 +16,25 @@ export const HeaderTag = styled.header`
     justify-content: space-around;
     align-items: center;
     background: ${colors.HeaderBgColor};
-    height: 6.6rem;
+    height: 8rem;
   }
   h1 {
     font-family: "lobster", cursive;
-    font-size: 3rem;
+    font-size: 4rem;
     letter-spacing: 0.2rem;
     color: ${colors.navLinks};
     margin: 0 1.8rem;
   }
   img{
-    height: 4.6rem;
+    height: 6rem;
     margin-right: 1.25rem;
   }
   input{
     background-color: ${colors.navInput};
     border: 1px solid ${colors.navInputBorder};
     border-radius: 0.5rem;
+    height: 3rem;
+    width: 30rem;
     padding: 0.2rem 0.5rem;
     color: ${colors.navLinks}
   }

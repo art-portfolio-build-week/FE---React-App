@@ -7,11 +7,29 @@ import { postToEdit, editPost } from "../../../redux/actions/actionCreators";
 import { putPost } from "../../../constants";
 
 const Article = styled.article`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   height: 30rem;
-  width: 20rem;
-  border: 1px solid black;
+  width: 25rem;
+  margin: 1.5rem;
+
   img{
-    width: 20rem;
+    width: 100%;
+  }
+  h2{
+    font-family: "lato";
+    font-style: normal;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  button{
+    background-color: white;
+    border: 0.15rem solid black;
+    border-radius: 3.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
   }
 `;
 
@@ -48,12 +66,12 @@ function PostList(props) {
 
   return (
     <Article>
-      <h1>{votes}</h1>
       <img src={imgURL} alt="" />
-      <p>Title: {description}</p>
-      <h1>Artist: {username}</h1>
-      <button type="button" onClick={passToState}>Edit Post</button>
-      {<button type="button" onClick={votePost}>Vote</button>}
+      <h2>Title: {description}</h2>
+      <h2>Artist: {username}</h2>
+      {/* <button type="button" onClick={passToState}>Edit Post</button>
+      {<button type="button" onClick={votePost}>Vote</button>} */}
+      <button>View More</button>
     </Article>
   );
 }

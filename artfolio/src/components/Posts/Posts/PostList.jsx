@@ -6,6 +6,8 @@ import PostCard from "./PostCard";
 const Div = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
 `;
 
 export default function PostList(props) {
