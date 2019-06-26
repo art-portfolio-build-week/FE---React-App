@@ -11,14 +11,14 @@ export default function Header({ token, loggedUser }) {
   return (
     <HeaderTag>
       <nav>
-        <Link exact to="/"><h1>Artista</h1></Link>
+        <Link to="/"><h1>Artista</h1></Link>
         <input type="text" name="search-query" />
         <section>
           <NavLink exact to="/">Galleries</NavLink>
-          <NavLink exact to="/find-artists">Find Artists</NavLink>
+          <NavLink to="/find-artists">Find Artists</NavLink>
           {token && <NavLink to="/postart">Add A New Post</NavLink>}
           {token ? (
-            <NavLink className="user">
+            <NavLink to="/" className="user">
               <h4>{loggedUser}</h4>
               <img src={userSVG} alt="user" />
             </NavLink>

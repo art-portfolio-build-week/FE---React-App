@@ -30,7 +30,7 @@ function App(props) {
       authenticate(localToken);
       setLoggedUser(username);
     }
-  }, [token, authenticate]);
+  }, [token, authenticate, setLoggedUser]);
 
   return (
     <>
