@@ -26,6 +26,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, { fetchApi })(Gallery);
 
 Gallery.propTypes = {
+  fetchApi: pt.func.isRequired,
   postList: pt.arrayOf(pt.shape({
     id: pt.number,
     username_id: pt.number,

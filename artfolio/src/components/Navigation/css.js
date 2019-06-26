@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as colors from "../../assets/styling";
-import banner from "../../assets/images/galleryBanner.png"
+import banner from "../../assets/images/galleryBanner.png";
+
 export const HeaderTag = styled.header`
   a {
     text-decoration: none;

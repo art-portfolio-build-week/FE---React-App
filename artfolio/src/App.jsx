@@ -58,8 +58,13 @@ const AppDiv = styled.div`
 `;
 
 function App(props) {
-  const { authenticate, token, loggedUser, setLoggedUser } = props;
-  console.log(loggedUser)
+  const {
+    authenticate,
+    token,
+    loggedUser,
+    setLoggedUser,
+  } = props;
+
   useEffect(() => {
     const localToken = localStorage.getItem("token");
     const username = localStorage.getItem("username");
@@ -82,7 +87,6 @@ function App(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     postList: state.postState.postList,
     isFetching: state.postState.postList,
@@ -100,4 +104,7 @@ App.defaultProps = {
 
 App.propTypes = {
   token: pt.string,
+  authenticate: pt.func.isRequired,
+  loggedUser: pt.func.isRequired,
+  setLoggedUser: pt.func.isRequired,
 };

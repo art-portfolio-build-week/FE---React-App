@@ -1,14 +1,15 @@
 import React from "react";
+import pt from "prop-types";
 import { NavLink } from "react-router-dom";
 import { HeaderTag, Button, BottomDiv } from "./css";
 import userSVG from "../../assets/svg/user.svg";
 
-export default function ({ token, loggedUser }) {
+export default function Header({ token, loggedUser }) {
   return (
     <HeaderTag>
       <nav>
         <a href="google.com"><h1>Artista</h1></a>
-        <input /> 
+        <input type="text" name="search-query" />
         <section>
           <NavLink to="/">Galleries</NavLink>
           <NavLink to="/postart">Add A New Post</NavLink>
@@ -38,3 +39,13 @@ function BottomContent() {
     </BottomDiv>
   );
 }
+
+Header.defaultProps = {
+  token: null,
+  loggedUser: null,
+};
+
+Header.propTypes = {
+  token: pt.string,
+  loggedUser: pt.string,
+};

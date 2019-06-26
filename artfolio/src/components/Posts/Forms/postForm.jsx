@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
+import pt from "prop-types";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { addPost, editPost, postToEdit } from "../../../redux/actions/actionCreators";
@@ -172,3 +173,19 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { addPost, editPost, postToEdit })(FormikForm);
+
+PostForm.defaultProps = {
+  history: {},
+  toBeEdited: {},
+};
+
+PostForm.propTypes = {
+  history: pt.func,
+  toBeEdited: pt.shape({
+    id: pt.number,
+    username_id: pt.number,
+    description: pt.string,
+    imgURL: pt.string,
+    votes: pt.number,
+  }),
+};
