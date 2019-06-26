@@ -118,7 +118,14 @@ function PostForm(props) {
         <img src={lenseImage} alt="lense" />
         <StyledForm>
           <h2>Title</h2>
-          {/* <Field type="text" name="title" placeholder="Is that a plane?" /> */}
+          <Field type="text" name="title" placeholder="Is that a plane?" />
+          <h2>Category</h2>
+          <Field type="text" name="category" component="select">
+            <option disabled selected>Post under one of these categories</option>
+            <option value="photography">Photography</option>
+            <option value="illustration">Illustration</option>
+            <option value="graphic-design">Graphic Design</option>
+          </Field>
           <h2>Description</h2>
           <Field type="text" name="description" component="textarea" placeholder="Superman saves the world again!" />
           <h2>Image Url</h2>
@@ -134,11 +141,15 @@ function mapPropsToValues({ toBeEdited }) {
   return {
     description: toBeEdited ? toBeEdited.description : "",
     imgURL: toBeEdited ? toBeEdited.imgURL : "",
+    title: toBeEdited ? toBeEdited.title : "",
+    category: toBeEdited ? toBeEdited.title : "Post under one of these categories",
   };
 }
 
 const valSchema = () => (
   Yup.object().shape({
+    title: Yup.string().required(),
+    category: Yup.string().required(),
     description: Yup.string().max(150).required(),
     imgURL: Yup.string().url().required(),
   })
