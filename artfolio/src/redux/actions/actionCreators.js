@@ -64,7 +64,6 @@ export const fetchApi = URL => dispatch => {
 };
 
 export const fetchById = URL => dispatch => {
-  debugger;
   axiosAuth().get(URL)
     .then(res => {
       dispatch({ type: types.FETCH_BY_ID_OK, payload: res.data });
