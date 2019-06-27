@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 import pt from "prop-types";
 import { connect } from "react-redux";
 import PostList from "./PostList";
@@ -27,7 +26,7 @@ function Gallery(props) {
         case "illustration":
           return postList.filter(post => post.category === "illustration");
         case "recent":
-          return postList.sort((a, b) => moment(b.timestamp).format("x") - moment(a.timestamp).format("x"));
+          return postList.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
         case "ranking":
           return postList.sort((a, b) => b.votes - a.votes);
         default:
