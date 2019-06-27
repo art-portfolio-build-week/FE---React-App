@@ -167,6 +167,7 @@ const FormikForm = withFormik({
       if (errors) {
         setErrors(errors);
       }
+      return;
     }
     const newPost = { ...values, timestamp: moment().format() };
     const errors = await props.addPost(newPost);
