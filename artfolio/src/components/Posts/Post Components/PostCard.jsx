@@ -49,7 +49,7 @@ const Article = styled.article`
 `;
 
 function PostList(props) {
-  const { postToEdit, post, fetchById } = props;
+  const { post, fetchById } = props;
   const { title, imgURL, username, votes, id } = post;
 
   const [isEditing, updateIsEditing] = useState(false);
@@ -59,11 +59,6 @@ function PostList(props) {
     updateIsEditing(false);
   }, [updateIsEditing]);
 
-  const passToState = () => {
-    postToEdit(props.post);
-    updateIsEditing(true);
-  };
-
   const viewMore = () => {
     fetchById(getPostById(id));
   };
@@ -71,7 +66,7 @@ function PostList(props) {
   const votePost = () => {
     if (isLiked) {
       const unvotedObj = { ...props.post, votes: votes - 1 };
-      editPost(unvotedObj);
+      // editPost(unvotedObj);
       updateIsLiked(false);
     }
     const votedObj = { ...props.post, votes: votes + 1 };
@@ -95,7 +90,7 @@ function PostList(props) {
   );
 }
 
-export default connect(state => state, { postToEdit, editPost, fetchById })(PostList);
+export default connect(state => state, { editPost, fetchById })(PostList);
 
 PostList.defaultProps = {
   post: {},
