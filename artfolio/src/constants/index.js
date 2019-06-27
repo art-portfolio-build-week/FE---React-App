@@ -5,6 +5,7 @@ export const register = "https://artista-backend.herokuapp.com/api/register";
 export const fetchAll = "https://artista-backend.herokuapp.com/api/posts";
 export const getPostById = id => `https://artista-backend.herokuapp.com/api/posts/${id}`;
 export const addPost = "https://artista-backend.herokuapp.com/api/posts";
+export const votePost = id => `https://artista-backend.herokuapp.com/api/posts/votes/${id}`;
 
 export const getUser = id => `https://artista-backend.herokuapp.com/api/users/${id}`;
 

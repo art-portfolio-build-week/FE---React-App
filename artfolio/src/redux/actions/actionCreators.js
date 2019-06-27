@@ -135,4 +135,9 @@ export const postToEdit = post => ({
   payload: post,
 });
 
-// export const deletePost = () => dispatch => null;
+export const addVotePost = (url, votes) => dispatch => {
+  axiosAuth().put(url, votes)
+    .then(() => {
+      dispatch(fetchApi(URL.fetchAll));
+    });
+};

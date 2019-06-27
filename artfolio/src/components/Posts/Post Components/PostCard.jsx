@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import styled from "styled-components";
 import pt from "prop-types";
-import { postToEdit, editPost, fetchById } from "../../../redux/actions/actionCreators";
-import { getPostById } from "../../../constants";
+import { addVotePost, editPost, fetchById } from "../../../redux/actions/actionCreators";
+import { getPostById, votePost } from "../../../constants";
 
 const Article = styled.article`
   display: flex;
@@ -48,56 +48,47 @@ const Article = styled.article`
   }
 `;
 
-function PostList(props) {
-  const { post, fetchById } = props;
+function PostCard(props) {
+  const { post, fetchById, addVotePost } = props;
   const { title, imgURL, username, votes, id } = post;
 
-  const [isEditing, updateIsEditing] = useState(false);
   const [isLiked, updateIsLiked] = useState(false);
-
-  useEffect(() => {
-    updateIsEditing(false);
-  }, [updateIsEditing]);
 
   const viewMore = () => {
     fetchById(getPostById(id));
   };
 
-  const votePost = () => {
+  const votePostByID = () => {
     if (isLiked) {
-      const unvotedObj = { ...props.post, votes: votes - 1 };
-      // editPost(unvotedObj);
+      const subtractVote = { votes: (votes - 1).toString() };
+      addVotePost(votePost(id), subtractVote);
       updateIsLiked(false);
+      return;
     }
-    const votedObj = { ...props.post, votes: votes + 1 };
-    editPost(getPostById(votedObj.id), votedObj);
+    const addVote = { votes: (votes + 1).toString() };
+    addVotePost(votePost(id), addVote);
     updateIsLiked(true);
   };
-
-  if (isEditing) {
-    return <Redirect to="/postart" />;
-  }
 
   return (
     <Article>
       <img src={imgURL} alt="" />
       <h2>Title: {title}</h2>
       <h2>Artist: {username}</h2>
-      {/* <button type="button" onClick={passToState}>Edit Post</button>
-      {<button type="button" onClick={votePost}>Vote</button>} */}
+      {<button type="button" onClick={votePostByID}>Vote</button>}
       <Link to={`/post/${id}`}><button onClick={viewMore} type="button">View More</button></Link>
     </Article>
   );
 }
 
-export default connect(state => state, { editPost, fetchById })(PostList);
+export default connect(state => state, { editPost, fetchById, addVotePost })(PostCard);
 
-PostList.defaultProps = {
+PostCard.defaultProps = {
   post: {},
 };
 
-PostList.propTypes = {
-  postToEdit: pt.func.isRequired,
+PostCard.propTypes = {
+  addVotePost: pt.func.isRequired,
   fetchById: pt.func.isRequired,
   post: pt.shape({
     id: pt.number.isRequired,
