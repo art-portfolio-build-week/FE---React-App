@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
@@ -7,7 +8,14 @@ import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
 import loginImage from "../../assets/images/loginImagejpeg";
-import { Button, flexColumn, sadBabyBlue, navyBlue, Image } from "../../assets/styling";
+// import styling
+import {
+  Button,
+  flexColumn,
+  sadBabyBlue,
+  navyBlue,
+  Image,
+} from "../../assets/styling";
 
 const StyledForm = styled(Form)`
   ${flexColumn};
@@ -99,7 +107,11 @@ const RegisterDiv = styled.div`
 `;
 
 function Register(props) {
-  const { errors, touched } = props;
+  const { errors, touched, token } = props;
+
+  if (token) {
+    return <Redirect to="/" />;
+  }
   return (
     <RegisterDiv>
       <h1>Let us show off your work!</h1>
@@ -107,7 +119,7 @@ function Register(props) {
         <Image src={loginImage} alt="" />
         <StyledForm>
           <h2>First Name</h2>
-          <Field type="text" name="fistName" placeholder="John" />
+          <Field type="text" name="firstName" placeholder="John" />
           {errors.firstName && <Error>{errors.firstName}</Error>}
           <h2>Last Name</h2>
           <Field type="text" name="lastName" placeholder="Doe" />
@@ -128,8 +140,12 @@ function Register(props) {
               <Field type="password" name="passwordConfirm" />
             </div>
             <div className="error">
-              {touched.password && errors.password && <Error>{errors.password}</Error>}
-              {touched.passwordConfirm && errors.passwordConfirm && <Error>{errors.passwordConfirm}</Error>}
+              {touched.password
+                && errors.password
+                && <Error>{errors.password}</Error>}
+              {touched.passwordConfirm
+                && errors.passwordConfirm
+                && <Error>{errors.passwordConfirm}</Error>}
             </div>
           </section>
           <h2>Phone Number</h2>
@@ -147,7 +163,7 @@ function Register(props) {
 
 function mapPropsToValues() {
   return {
-    fistName: "",
+    firstName: "",
     lastName: "",
     email: "",
     dob: "",
@@ -165,7 +181,7 @@ const valSchema = () => (
     email: Yup.string().email(registerInvalid.email).required(registerRequired.email),
     dob: Yup.date(registerInvalid.dob).required(registerRequired.dob),
     password: Yup.string().min(8, registerInvalid.password).required(registerRequired.password),
-    passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null]).required(registerInvalid.passwordConfirm),
+    passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], registerInvalid.passwordConfirm).required(registerInvalid.passwordConfirm),
     phone: Yup.number(registerInvalid.phone).required(registerRequired.phone),
     uvp: Yup.string(registerInvalid.uvp).required(registerRequired.uvp),
   })
@@ -191,14 +207,22 @@ const RegisterFormik = withFormik({
   },
 })(Register);
 
-export default connect(state => state, { registerUser })(RegisterFormik);
+function mapStateToProps(state) {
+  return {
+    token: state.authState.token,
+  };
+}
+
+export default connect(mapStateToProps, { registerUser })(RegisterFormik);
 
 Register.defaultProps = {
+  token: null,
   errors: {},
   touched: {},
 };
 
 Register.propTypes = {
+  token: pt.string,
   errors: pt.shape({
     username: pt.string,
     email: pt.string,

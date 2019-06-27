@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
@@ -76,10 +77,12 @@ const Error = styled.div`
 `;
 
 function Login(props) {
-  const { errors, touched } = props;
+  const { errors, touched, token } = props;
+  if (token) {
+    return <Redirect to="/" />;
+  }
   return (
     <LoginContainer>
-      {/* {<img src={} />} */}
       <SectionLeft>
         <h1>Welcome Back!</h1>
         <Image src={loginImage} alt="" />
@@ -126,14 +129,22 @@ const LoginFormik = withFormik({
   },
 })(Login);
 
-export default connect(state => state, { loginUser })(LoginFormik);
+function mapStateToProps(state) {
+  return {
+    token: state.authState.token,
+  };
+}
+
+export default connect(mapStateToProps, { loginUser })(LoginFormik);
 
 Login.defaultProps = {
+  token: null,
   errors: {},
   touched: {},
 };
 
 Login.propTypes = {
+  token: pt.string,
   errors: pt.shape({
     email: pt.string,
     password: pt.string,
