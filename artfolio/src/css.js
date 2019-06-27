@@ -30,6 +30,7 @@ body, html{
 @font-face {
     font-family: 'LatoIta';
     src: url(${latoItalic});
+    font-weight: 400;
     font-style: italic, oblique;
     font-display: sans-serif
   }
