@@ -1,0 +1,4 @@
+[build]
+  base = "artfolio/"
+  publish = "artfolio/public"
+  command = "npm run build"
