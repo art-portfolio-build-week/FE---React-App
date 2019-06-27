@@ -30,7 +30,7 @@ function Gallery(props) {
         case "ranking":
           return postList.sort((a, b) => b.votes - a.votes);
         default:
-          return postList;
+          return postList.sort((a, b) => a.id - b.id);
       }
     }
     return postList.slice(0);

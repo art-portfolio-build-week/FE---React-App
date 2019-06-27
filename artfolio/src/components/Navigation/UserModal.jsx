@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { authenticate } from "../../redux/actions/actionCreators";
-import { getUser } from "../../constants"
+import { getUser } from "../../constants";
 
 function UserModal({ modal, authenticate }) {
 
