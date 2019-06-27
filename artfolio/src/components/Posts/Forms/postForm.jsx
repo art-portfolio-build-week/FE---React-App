@@ -7,12 +7,14 @@ import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { addPost, editPost, postToEdit } from "../../../redux/actions/actionCreators";
 import { getPostById } from "../../../constants";
+import { Button, sadBabyBlue, navyBlue } from "../../../assets/styling";
 import lenseImage from "../../../assets/images/addPost.png";
 
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  input{
+  input, select{
+    background-color: white;
     height: 5rem;
     padding: 0.5rem;
     width: 42.5rem;
@@ -32,27 +34,6 @@ const StyledForm = styled(Form)`
       font-size: 3rem;
       }
   }
-  button{
-    align-self: center;
-    width: 60%;
-    color: white;
-    font-size: 2.2rem;
-    padding: 1rem;
-    background-color: #153D5B;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-    border-radius: 1.5rem;
-    border: 3px solid #153D5B;
-    margin-top: 0.5rem;
-    transition: 0.2s;
-    margin-bottom: 3.5rem;
-    cursor: pointer;
-    &:hover{
-      transition: 0.2s;
-      background-color: #12973c;
-      color: #171D21;
-      border: 3px solid #171D21;
-    }
-  }
   button:last-of-type{
     margin-top: 0;
     background-color: white;
@@ -60,8 +41,8 @@ const StyledForm = styled(Form)`
     border: 3px solid #171D21;
     &:hover{
       transition: 0.2s;
-      background-color: #a22119;
-      color: white;
+      background-color: ${sadBabyBlue};
+      color: ${navyBlue};
     }
   }
   textarea{
@@ -131,8 +112,8 @@ function PostForm(props) {
           <Field type="text" name="description" component="textarea" placeholder="Superman saves the world again!" />
           <h2>Image Url</h2>
           <Field type="text" name="imgURL" placeholder="Enter the image url" />
-          <button type="submit">{toBeEdited ? "Edit" : "Save"}</button>
-          <button type="button" onClick={history.goBack}>Cancel</button>
+          <Button type="submit">{toBeEdited ? "Edit" : "Save"}</Button>
+          <Button type="Button" onClick={history.goBack}>Cancel</Button>
         </StyledForm>
       </section>
     </Div>
