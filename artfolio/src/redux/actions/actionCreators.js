@@ -89,6 +89,21 @@ export const addPost = payload => dispatch => {
     });
 };
 
+// User Specific
+
+export const getUserById = URL => dispatch => {
+  axiosAuth().get(URL)
+    .then(res => {
+      dispatch({ type: types.GET_USER_BY_ID_OK, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.GET_USER_BY_ID_FAIL, payload: err });
+    })
+    .finally(() => {
+      dispatch({ type: types.GET_USER_BY_ID, payload: false });
+    });
+};
+
 export const editPost = (URL, payload) => dispatch => {
   axiosAuth().put(URL, payload)
     .then(() => {

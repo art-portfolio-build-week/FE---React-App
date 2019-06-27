@@ -6,21 +6,6 @@ const initalState = {
   errorMessage: null,
 };
 
-const authState = {
-  token: null,
-  authMessage: null,
-  loggedUser: null,
-};
-
-const postToEdit = {
-  toBeEdited: null,
-};
-
-const idState = {
-  postById: null,
-  isFetchingId: true,
-  errorMessageId: null,
-};
 
 export function postReducer(state = initalState, action) {
   switch (action.type) {
@@ -37,6 +22,12 @@ export function postReducer(state = initalState, action) {
   }
 }
 
+const idState = {
+  postById: null,
+  isFetchingId: true,
+  errorMessageId: null,
+};
+
 export function postIdReducer(state = idState, action) {
   switch (action.type) {
     case types.FETCH_BY_ID:
@@ -49,6 +40,12 @@ export function postIdReducer(state = idState, action) {
       return state;
   }
 }
+
+const authState = {
+  token: null,
+  authMessage: null,
+  loggedUser: null,
+};
 
 export function authReducer(state = authState, action) {
   switch (action.type) {
@@ -63,10 +60,19 @@ export function authReducer(state = authState, action) {
   }
 }
 
-export function editPostReducer(state = postToEdit, action) {
+const postToEdit = {
+  toBeEdited: null,
+  userInfo: null,
+  isFetching: true,
+  errorMessage: null,
+};
+
+export function userReducer(state = postToEdit, action) {
   switch (action.type) {
     case types.POST_TO_EDIT:
       return { ...state, toBeEdited: action.payload };
+    case types.GET_USER_BY_ID:
+      return { ...state, userInfo: action.payload };
     default:
       return state;
   }

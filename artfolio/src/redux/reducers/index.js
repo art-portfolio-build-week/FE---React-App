@@ -3,12 +3,12 @@ import {
   postReducer,
   postIdReducer,
   authReducer,
-  editPostReducer,
+  userReducer,
 } from "./reducers";
 
 export default combineReducers({
   postState: postReducer,
   authState: authReducer,
-  editState: editPostReducer,
+  editState: userReducer,
   postIdState: postIdReducer,
 });
