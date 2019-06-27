@@ -67,6 +67,7 @@ const postToEdit = {
   userInfo: null,
   isFetching: true,
   errorMessage: null,
+  message: null,
 };
 
 export function userReducer(state = postToEdit, action) {
