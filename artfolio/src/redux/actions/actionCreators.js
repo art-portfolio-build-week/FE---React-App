@@ -120,13 +120,16 @@ export const editPost = (URL, payload) => dispatch => {
     });
 };
 
-export const deletePost = (URL) => dispatch => {
-  axiosAuth().delete(URL)
+export const deletePost = (url, id) => dispatch => {
+  axiosAuth().delete(url)
     .then((res) => {
       dispatch({ type: types.MESSAGE, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: types.GET_USER_BY_ID_FAIL, payload: err });
+    })
+    .finally(() => {
+      dispatch(getUserById(URL.getUser(id)));
     });
 };
 

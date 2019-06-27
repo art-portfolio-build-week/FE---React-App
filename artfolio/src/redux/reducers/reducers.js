@@ -75,7 +75,7 @@ export function userReducer(state = userState, action) {
     case types.POST_TO_EDIT:
       return { ...state, toBeEdited: action.payload };
     case types.GET_USER_BY_ID_OK:
-      return { ...state, userInfo: action.payload };
+      return { ...state, userInfo: action.payload, isFetching: true };
     case types.GET_USER_BY_ID_FAIL:
       return { ...state, errorMessage: action.payload };
     case types.GET_USER_BY_ID:
