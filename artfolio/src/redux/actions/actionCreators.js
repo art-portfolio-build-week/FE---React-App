@@ -120,6 +120,16 @@ export const editPost = (URL, payload) => dispatch => {
     });
 };
 
+export const deletePost = (URL) => dispatch => {
+  axiosAuth().delete(URL)
+    .then((res) => {
+      dispatch({ type: types.MESSAGE, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.GET_USER_BY_ID_FAIL, payload: err });
+    });
+};
+
 export const postToEdit = post => ({
   type: types.POST_TO_EDIT,
   payload: post,
