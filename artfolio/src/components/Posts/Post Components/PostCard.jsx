@@ -50,7 +50,7 @@ const Article = styled.article`
 
 function PostList(props) {
   const { postToEdit, post, fetchById } = props;
-  const { description, imgURL, username, votes, id } = post;
+  const { title, imgURL, username, votes, id } = post;
 
   const [isEditing, updateIsEditing] = useState(false);
   const [isLiked, updateIsLiked] = useState(false);
@@ -86,7 +86,7 @@ function PostList(props) {
   return (
     <Article>
       <img src={imgURL} alt="" />
-      <h2>Title: {description}</h2>
+      <h2>Title: {title}</h2>
       <h2>Artist: {username}</h2>
       {/* <button type="button" onClick={passToState}>Edit Post</button>
       {<button type="button" onClick={votePost}>Vote</button>} */}
@@ -107,7 +107,7 @@ PostList.propTypes = {
   post: pt.shape({
     id: pt.number.isRequired,
     username_id: pt.number.isRequired,
-    description: pt.string.isRequired,
+    title: pt.string.isRequired,
     imgURL: pt.string.isRequired,
     votes: pt.number.isRequired,
     username: pt.string.isRequired,
