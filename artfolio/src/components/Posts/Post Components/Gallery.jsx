@@ -37,11 +37,11 @@ function Gallery(props) {
   };
 
   const setNameToState = (e) => {
+    updateName(e.target.name);
     const buttons = document.querySelectorAll("li button");
     buttons.forEach(btn => {
       btn.classList.remove("active");
     });
-    updateName(e.target.name);
     e.target.classList.add("active");
   };
 
