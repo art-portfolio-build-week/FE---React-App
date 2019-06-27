@@ -46,7 +46,7 @@ function UserPostCard(props) {
   };
 
   const deletePostByID = () => {
-    deletePost(getPostById(post.id));
+    deletePost(getPostById(post.id), post.username_id);
     getUserById(getUser(userInfo.user.id));
   };
 
