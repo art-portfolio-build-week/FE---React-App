@@ -24,7 +24,7 @@ function ProfilePage(props) {
     <div>
       <h1>Profile</h1>
       <UserPostList postList={userInfo.posts} />
-      <UserCard userID={match.params.id}/>
+      <UserCard userID={match.params.id} />
     </div>
   );
 }
