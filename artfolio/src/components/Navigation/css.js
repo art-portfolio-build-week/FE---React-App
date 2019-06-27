@@ -58,7 +58,7 @@ export const HeaderTag = styled.header`
   }
   h1 {
     font-family: "lobster", cursive;
-    font-size: 4rem;
+    font-size: 5.5rem;
     letter-spacing: 0.2rem;
     color: ${colors.navLinks};
     margin: 0 1.8rem;
