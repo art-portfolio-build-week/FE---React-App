@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import styled from "styled-components";
 import pt from "prop-types";
 import { postToEdit, editPost, fetchById } from "../../../redux/actions/actionCreators";
-import { putPost, getPostById } from "../../../constants";
+import { getPostById } from "../../../constants";
 
 const Article = styled.article`
   display: flex;
@@ -75,7 +75,7 @@ function PostList(props) {
       updateIsLiked(false);
     }
     const votedObj = { ...props.post, votes: votes + 1 };
-    editPost(putPost(votedObj.id), votedObj);
+    editPost(getPostById(votedObj.id), votedObj);
     updateIsLiked(true);
   };
 

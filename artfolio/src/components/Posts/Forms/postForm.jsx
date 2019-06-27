@@ -5,7 +5,7 @@ import pt from "prop-types";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { addPost, editPost, postToEdit } from "../../../redux/actions/actionCreators";
-import { putPost } from "../../../constants";
+import { getPostById } from "../../../constants";
 import lenseImage from "../../../assets/images/addPost.png";
 
 const StyledForm = styled(Form)`
@@ -163,7 +163,7 @@ const FormikForm = withFormik({
       // eslint-disable-next-line prefer-destructuring
       const id = props.toBeEdited.id;
       const editedObject = { ...props.toBeEdited, ...values };
-      const errors = await props.editPost(putPost(id), editedObject);
+      const errors = await props.editPost(getPostById(id), editedObject);
       if (errors) {
         setErrors(errors);
       }
