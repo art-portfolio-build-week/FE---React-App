@@ -5,6 +5,7 @@ import moment from "moment";
 import pt from "prop-types";
 import { fetchById } from "../../../redux/actions/actionCreators";
 import { getPostById } from "../../../constants";
+import UserCard from "./UserCard";
 
 const Div = styled.div`
   display: flex;
@@ -92,6 +93,7 @@ function PostPage(props) {
         <h3>Description of Piece</h3>
         <p>{post.description}</p>
       </section>
+      <UserCard userID={post.username_id} />
     </Div>
   );
 }
@@ -107,6 +109,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, { fetchById })(PostPage);
 
 PostPage.defaultProps = {
+  post: {},
   errorMessage: null,
   match: null,
 };
@@ -118,7 +121,7 @@ PostPage.propTypes = {
     description: pt.string.isRequired,
     imgURL: pt.string.isRequired,
     votes: pt.number.isRequired,
-  }).isRequired,
+  }),
 
   isFetching: pt.bool.isRequired,
   errorMessage: pt.string,
