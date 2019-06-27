@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import pt from "prop-types";
 import { NavLink, Link } from "react-router-dom";
 import { HeaderTag } from "./css";
@@ -6,7 +6,16 @@ import userSVG from "../../assets/svg/user.svg";
 import UserModal from "./UserModal";
 
 export default function Header({ token, loggedUser }) {
-  const [modal, updateModal] = useState("none");
+  const [modal, updateModal] = useState(false);
+  const showModal = () => {
+    updateModal(!modal);
+  };
+
+  useEffect(() => {
+    if (!token) {
+      updateModal(false);
+    }
+  }, [token]);
 
   return (
     <HeaderTag>
@@ -18,10 +27,10 @@ export default function Header({ token, loggedUser }) {
           <NavLink to="/find-artists">Find Artists</NavLink>
           {token && <NavLink to="/postart">Add A New Post</NavLink>}
           {token ? (
-            <NavLink to="/" className="user">
+            <button type="button" onClick={showModal} className="user">
               <h4>{loggedUser}</h4>
               <img src={userSVG} alt="user" />
-            </NavLink>
+            </button>
           ) : (
             <React.Fragment>
               <NavLink to="/register">Sign Up</NavLink>
@@ -31,7 +40,7 @@ export default function Header({ token, loggedUser }) {
           }
         </section>
       </nav>
-      {/* <UserModal modal={modal} /> */}
+      <UserModal modal={modal} />
     </HeaderTag>
   );
 }
