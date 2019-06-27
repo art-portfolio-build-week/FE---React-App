@@ -73,13 +73,13 @@ export const HeaderTag = styled.header`
   }
   }
   input{
-    background-color: ${colors.navInput};
+    background-color: white;
     border: 1px solid ${colors.navInputBorder};
     border-radius: 0.5rem;
     height: 3rem;
     width: 30rem;
     padding: 0.2rem 0.5rem;
-    color: ${colors.navLinks};
+    color: ${colors.navInputBorder};
     @media (max-width: 1250px){
       font-size: 3.6rem;
       margin-bottom: 1rem;
