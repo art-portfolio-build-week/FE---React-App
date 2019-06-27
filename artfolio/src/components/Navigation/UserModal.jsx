@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { authenticate, getUserById } from "../../redux/actions/actionCreators";
+import { authenticate } from "../../redux/actions/actionCreators";
 import { getUser } from "../../constants"
 
-function UserModal({ modal, authenticate, getUserById }) {
+function UserModal({ modal, authenticate }) {
 
   const id = localStorage.getItem("userID");
   const username = localStorage.getItem("username") && localStorage.getItem("username").replace(/\s/g, "");
-
-  useEffect(() => {
-    getUserById(getUser(id));
-  });
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -34,4 +30,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { authenticate, getUserById })(UserModal);
+export default connect(mapStateToProps, { authenticate })(UserModal);
