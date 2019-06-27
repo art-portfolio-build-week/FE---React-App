@@ -141,6 +141,11 @@ const FormikForm = withFormik({
   validationSchema: valSchema,
   mapPropsToValues,
   handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
+    const confirmDialog = props.toBeEdited
+      ? "Are you sure you want to edit the post?"
+      : "Are you sure you want to add the post?";
+
+    window.confirm(confirmDialog);
     if (props.toBeEdited) {
       // eslint-disable-next-line prefer-destructuring
       const id = props.toBeEdited.id;
