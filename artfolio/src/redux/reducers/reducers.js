@@ -62,7 +62,7 @@ export function authReducer(state = authState, action) {
   }
 }
 
-const postToEdit = {
+const userState = {
   toBeEdited: null,
   userInfo: null,
   isFetching: true,
@@ -70,7 +70,7 @@ const postToEdit = {
   message: null,
 };
 
-export function userReducer(state = postToEdit, action) {
+export function userReducer(state = userState, action) {
   switch (action.type) {
     case types.POST_TO_EDIT:
       return { ...state, toBeEdited: action.payload };
