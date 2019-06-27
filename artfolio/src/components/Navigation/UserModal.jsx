@@ -7,7 +7,7 @@ import { getUser } from "../../constants"
 function UserModal({ modal, authenticate, getUserById }) {
 
   const id = localStorage.getItem("userID");
-  const username = localStorage.getItem("username").replace(/\s/g, "");
+  const username = localStorage.getItem("username") && localStorage.getItem("username").replace(/\s/g, "");
 
   useEffect(() => {
     getUserById(getUser(id));
