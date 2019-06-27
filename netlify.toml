@@ -1,4 +1,4 @@
 [build]
   base = "artfolio/"
-  publish = "artfolio/public"
+  publish = "artfolio/build"
   command = "npm run build"
