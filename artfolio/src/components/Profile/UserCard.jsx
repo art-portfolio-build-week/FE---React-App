@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
+import pt from "prop-types";
 import { connect } from "react-redux";
-import { getUserById } from "../../../redux/actions/actionCreators";
-import { getUser } from "../../../constants";
+import { getUserById } from "../../redux/actions/actionCreators";
+import { getUser } from "../../constants";
 
 function UserCard(props) {
-  const { user, userID, getUserById, isFetching, errorMessage } = props;
+  const {
+    user,
+    userID,
+    getUserById,
+    isFetching,
+    errorMessage,
+  } = props;
 
   useEffect(() => {
     getUserById(getUser(userID));
@@ -34,3 +41,15 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getUserById })(UserCard);
+
+UserCard.propTypes = {
+  user: pt.shape({
+    email: pt.string.isRequired,
+    name: pt.string.isRequired,
+    uvp: pt.string.isRequired,
+  }).isRequired,
+  userID: pt.string.isRequired,
+  getUserById: pt.func.isRequired,
+  isFetching: pt.string.isRequired,
+  errorMessage: pt.string.isRequired,
+};
