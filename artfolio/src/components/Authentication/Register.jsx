@@ -48,10 +48,8 @@ function Register(props) {
         </div>
       </section>
       {errors.passwordConfirm && <p>{errors.passwordConfirm}</p>}
-      <Field type="text" name="igHandle" />
-      {touched.igHandle && errors.igHandle && <p>{errors.igHandle}</p>}
-      <Field type="text" name="twHandle" />
-      {touched.igHandle && errors.twHandle && <p>{errors.twHandle}</p>}
+      <Field type="text" name="phone" />
+      <Field type="text" component="textarea" name="uvp" />
       <button type="submit">Register</button>
     </StyledForm>
   );
@@ -65,8 +63,8 @@ function mapPropsToValues() {
     dob: "",
     password: "",
     passwordConfirm: "",
-    igHandle: "",
-    twHandle: "",
+    phone: "",
+    uvp: "",
   };
 }
 
@@ -93,6 +91,9 @@ const RegisterFormik = withFormik({
       username: `${values.fistName} ${values.lastName}`,
       password: values.password,
       email: values.email,
+      dob: values.dob,
+      phone: values.phone,
+      uvp: values.uvp,
     };
     const errors = await props.registerUser(newUser);
     if (errors) {
