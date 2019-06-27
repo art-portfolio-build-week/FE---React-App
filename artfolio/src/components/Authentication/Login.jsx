@@ -7,15 +7,10 @@ import pt from "prop-types";
 import { loginUser } from "../../redux/actions/actionCreators";
 import { requiredLogin, loginInvalid } from "../../constants";
 import loginImage from "../../assets/images/loginImagejpeg";
-import { Button, sadBabyBlue, navyBlue } from "../../assets/styling";
-
-const flex = `
-  display: flex;
-  flex-direction: column;
-`;
+import { Button, flexColumn, Image } from "../../assets/styling";
 
 const LoginContainer = styled.div`
-  ${flex};
+  ${flexColumn};
   padding: 8rem;
   flex-direction: row;
   justify-content: space-around;
@@ -23,7 +18,7 @@ const LoginContainer = styled.div`
 
 const SectionLeft = styled.section`
   width: 40%;
-  ${flex}
+  ${flexColumn}
   align-items: center;
     h1{
       align-self: flex-start;
@@ -34,7 +29,7 @@ const SectionLeft = styled.section`
 `;
 
 const StyledForm = styled(Form)`
-  ${flex};
+  ${flexColumn};
   justify-content: space-around;
   align-items: center;
   width: 40%;
@@ -57,7 +52,7 @@ const StyledForm = styled(Form)`
     font-weight: 600;
   }
   .form{
-    ${flex}
+    ${flexColumn}
     height: 60%;
     button{
       margin-top: 5rem;
@@ -67,7 +62,7 @@ const StyledForm = styled(Form)`
 `;
 
 const Error = styled.div`
-  ${flex}
+  ${flexColumn}
   p{
     align-self: center;
     font-family: "lato";
@@ -80,11 +75,6 @@ const Error = styled.div`
   }
 `;
 
-const Image = styled.img`
-  height: 48rem;
-  margin-top: 5rem;
-`;
-
 function Login(props) {
   const { errors, touched } = props;
   return (
@@ -92,7 +82,7 @@ function Login(props) {
       {/* {<img src={} />} */}
       <SectionLeft>
         <h1>Welcome Back!</h1>
-        <Image src={loginImage} />
+        <Image src={loginImage} alt="" />
       </SectionLeft>
       <StyledForm>
         <Error>

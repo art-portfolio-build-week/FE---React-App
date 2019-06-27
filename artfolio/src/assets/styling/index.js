@@ -18,6 +18,11 @@ export const navInput = seaBlue;
 export const activeLink = polishedGold;
 export const navInputBorder = deepSeaBlue;
 
+export const flexColumn = `
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Button = styled.button`
     align-self: center;
     width: 60%;
@@ -37,4 +42,9 @@ export const Button = styled.button`
       background-color: ${deepSeaBlueDarker};
       border: 3px solid #171D21;
     }
+`;
+
+export const Image = styled.img`
+  height: 48rem;
+  margin-top: 5rem;
 `;

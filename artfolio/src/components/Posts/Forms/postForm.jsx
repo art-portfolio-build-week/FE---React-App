@@ -49,7 +49,7 @@ const StyledForm = styled(Form)`
     height: 25rem;
     resize: none;
     padding: 0.5rem;
-    border: 0.1rem solid #979797;
+    border: 0.2rem solid #979797;
     border-radius: 0.2rem;
     margin-bottom: 2.5rem;
   }
