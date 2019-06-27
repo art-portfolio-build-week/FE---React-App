@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { authenticate, getUserById } from "../../redux/actions/actionCreators";
 import UserPostList from "./UserPostsList";
 import { getUser } from "../../constants";
+import UserCard from "./UserCard";
 
 function ProfilePage(props) {
-  const { userInfo, match, isFetching, errorMessage } = props;
+  const { userInfo, match, isFetching, errorMessage, getUserById } = props;
 
   useEffect(() => {
     getUserById(getUser(match.params.id));
-  }, [userInfo, match]);
+  }, [match, getUserById]);
 
   if (isFetching) {
     return <p>Loading</p>;
@@ -23,6 +24,7 @@ function ProfilePage(props) {
     <div>
       <h1>Profile</h1>
       <UserPostList postList={userInfo.posts} />
+      <UserCard userID={match.params.id}/>
     </div>
   );
 }
