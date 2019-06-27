@@ -6,7 +6,6 @@ const initalState = {
   errorMessage: null,
 };
 
-
 export function postReducer(state = initalState, action) {
   switch (action.type) {
     case types.FETCH_API:
@@ -71,8 +70,12 @@ export function userReducer(state = postToEdit, action) {
   switch (action.type) {
     case types.POST_TO_EDIT:
       return { ...state, toBeEdited: action.payload };
-    case types.GET_USER_BY_ID:
+    case types.GET_USER_BY_ID_OK:
       return { ...state, userInfo: action.payload };
+    case types.GET_USER_BY_ID_FAIL:
+      return { ...state, errorMessage: action.payload };
+    case types.GET_USER_BY_ID:
+      return { ...state, isFetching: action.payload };
     default:
       return state;
   }
