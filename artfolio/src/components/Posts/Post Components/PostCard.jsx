@@ -93,7 +93,7 @@ const bounceLike = keyframes`
   }
 `;
 
-// throws an error because of vscode typescript linting no idea why but it worksv
+// throws an error because of vscode typescript linting no idea why but it works
 const mixin = css`
   ${bounceLike}  0.9s both
 `;
@@ -118,7 +118,13 @@ const LikeButton = styled.div`
 
 function PostCard(props) {
   const { post, fetchById, addVotePost } = props;
-  const { title, imgURL, username, votes, id } = post;
+  const {
+    title,
+    imgURL,
+    username,
+    votes,
+    id,
+  } = post;
 
   const [isLiked, updateIsLiked] = useState(false);
 
