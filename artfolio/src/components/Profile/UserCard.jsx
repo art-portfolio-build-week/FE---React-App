@@ -13,17 +13,17 @@ const Div = styled.div`
   border: 2px solid #405768;
   width: 82rem;
   height: 251px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-  h2{
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  h2 {
     line-height: 1.4;
     font-size: 2.4rem;
     font-weight: bold;
-    span{
+    span {
       font-weight: normal;
     }
     margin-left: 2rem;
   }
-  p{
+  p {
     font-size: 2.2rem !important;
     font-family: "latoIta";
     font-style: italic;
@@ -33,26 +33,21 @@ const Div = styled.div`
 `;
 
 function UserCard(props) {
-  const {
-    user,
-    userID,
-    getUserById,
-    isFetching,
-    errorMessage,
-  } = props;
+  const { user, userID, getUserById, isFetching, errorMessage } = props;
 
   useEffect(() => {
     // for some reason this hook keeps re-rendering
     // even tough it's set to be onMount and unMount only
     // added a logical condition to exit out useEffect if the id's match
     // to see the effect go to uncomemnt if statement, go profile page & hover over a post
-    if (user) {
-      if (user.user.id === Number(userID)) {
-        return;
-      }
-    }
+    console.log(typeof userID, userID);
+    // if (user) {
+    //   if (user.user.id === Number(userID)) {
+    //     return;
+    //   }
+    // }
     getUserById(getUser(userID));
-  }, [user, getUserById, userID]);
+  }, [/*user,*/ getUserById, userID]);
 
   if (isFetching) {
     return <p>Loading</p>;
@@ -63,8 +58,12 @@ function UserCard(props) {
   return (
     <Div>
       <p>&quot;{user.user.uvp}&quot;</p>
-      <h2>Contact: <span>{user.user.email}</span></h2>
-      <h2>Name: <span>{user.user.username}</span></h2>
+      <h2>
+        Contact: <span>{user.user.email}</span>
+      </h2>
+      <h2>
+        Name: <span>{user.user.username}</span>
+      </h2>
     </Div>
   );
 }
@@ -73,25 +72,28 @@ function mapStateToProps(state) {
   return {
     user: state.userState.userInfo,
     isFetching: state.userState.isFetching,
-    errorMessage: state.userState.errorMessage,
+    errorMessage: state.userState.errorMessage
   };
 }
 
-export default connect(mapStateToProps, { getUserById })(UserCard);
+export default connect(
+  mapStateToProps,
+  { getUserById }
+)(UserCard);
 
 UserCard.defaultProps = {
   user: {},
-  errorMessage: null,
+  errorMessage: null
 };
 
 UserCard.propTypes = {
   user: pt.shape({
     email: pt.string,
     name: pt.string,
-    uvp: pt.string,
+    uvp: pt.string
   }),
   userID: pt.string.isRequired,
   getUserById: pt.func.isRequired,
   isFetching: pt.bool.isRequired,
-  errorMessage: pt.string,
+  errorMessage: pt.string
 };
