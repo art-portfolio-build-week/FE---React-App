@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosAuth from "../../axios";
 import * as types from "./actionTypes";
 import * as URL from "../../constants";
@@ -22,7 +23,7 @@ const setAuthMessageToState = message => ({
 });
 
 export const loginUser = payload => dispatch => {
-  axiosAuth().post(URL.login, payload)
+  axios.post(URL.login, payload)
     .then(res => {
       dispatch(authenticate(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
@@ -36,7 +37,7 @@ export const loginUser = payload => dispatch => {
 };
 
 export const registerUser = payload => dispatch => {
-  axiosAuth().post(URL.register, payload)
+  axios.post(URL.register, payload)
     .then(res => {
       dispatch(authenticate(res.data.token));
       dispatch(setAuthMessageToState(res.data.message));
