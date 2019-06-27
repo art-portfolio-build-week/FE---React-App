@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import * as Yup from "yup";
 import styled from "styled-components";
 import pt from "prop-types";
@@ -121,7 +122,7 @@ function PostForm(props) {
           <Field type="text" name="title" placeholder="Is that a plane?" />
           <h2>Category</h2>
           <Field type="text" name="category" component="select">
-            <option disabled selected>Post under one of these categories</option>
+            <option disabled defaultValue>Post under one of these categories</option>
             <option value="photography">Photography</option>
             <option value="illustration">Illustration</option>
             <option value="graphic-design">Graphic Design</option>
@@ -168,8 +169,8 @@ const FormikForm = withFormik({
         setErrors(errors);
       }
     }
-
-    const errors = await props.addPost(values);
+    const newPost = { ...values, timestamp: moment().format() };
+    const errors = await props.addPost(newPost);
     if (errors) {
       setErrors(errors);
     }
