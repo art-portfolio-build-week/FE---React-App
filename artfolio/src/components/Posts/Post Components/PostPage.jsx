@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import moment from "moment";
 import pt from "prop-types";
 import { fetchById } from "../../../redux/actions/actionCreators";
 import { getPostById } from "../../../constants";
@@ -79,17 +80,17 @@ function PostPage(props) {
   }
   return (
     <Div>
-      <h1>Sample Title</h1>
+      <h1>{post.title}</h1>
 
       <section>
-        <img src={post.imgURL} alt="title" />
-        <i>Published On: 1/20/20</i>
+        <img src={post.imgURL} alt={post.title} />
+        <i>Published On: {moment(post.timestamp).format("LL")}</i>
         <i>Upvote Count: {post.votes}</i>
       </section>
 
       <section className="description">
         <h3>Description of Piece</h3>
-        <p>{post.description} Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>{post.description}</p>
       </section>
     </Div>
   );
