@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import pt from "prop-types";
 import { addVotePost, editPost, fetchById } from "../../../redux/actions/actionCreators";
 import { getPostById, votePost } from "../../../constants";
-import { Article ,LikeButton } from "./PostCard_CSS";
+import { Article, LikeButton } from "./PostCard_CSS";
 
 function PostCard(props) {
   const { post, fetchById, addVotePost } = props;
