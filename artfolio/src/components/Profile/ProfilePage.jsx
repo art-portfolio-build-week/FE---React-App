@@ -9,11 +9,12 @@ function ProfilePage(props) {
 
   useEffect(() => {
     getUserById(getUser(match.params.id));
-  });
+  }, [userInfo, match]);
 
   if (isFetching) {
     return <p>Loading</p>;
   }
+
   if (errorMessage) {
     return <p>Post does not exist</p>;
   }

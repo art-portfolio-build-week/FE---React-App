@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { postToEdit } from "../../redux/actions/actionCreators";
+import { postToEdit, deletePost, getUserById } from "../../redux/actions/actionCreators";
+import { getPostById, getUser } from "../../constants"
 
 const Article = styled.article`
   display: flex;
@@ -33,16 +34,20 @@ const Article = styled.article`
 `;
 
 function UserPostCard(props) {
-  const { post, postToEdit } = props;
+  const { post, postToEdit, deletePost, getUserById, userInfo } = props;
   const [isEditing, updateIsEditing] = useState(false);
-
   useEffect(() => {
     updateIsEditing(false);
-  }, [updateIsEditing]);
+  }, [updateIsEditing, userInfo]);
 
   const passToState = () => {
-    postToEdit(post.id);
+    postToEdit(post);
     updateIsEditing(true);
+  };
+
+  const deletePostByID = () => {
+    deletePost(getPostById(post.id));
+    getUserById(getUser(userInfo.user.id));
   };
 
   if (isEditing) {
@@ -51,6 +56,7 @@ function UserPostCard(props) {
   return (
     <Article>
       <button type="button" onClick={passToState}>EDIT</button>
+      <button type="button" onClick={deletePostByID}>Delete</button>
       <img src={post.imgURL} alt="" />
       <h2>Title: {post.title}</h2>
       <h2>Votes: {post.votes}</h2>
@@ -59,4 +65,10 @@ function UserPostCard(props) {
   );
 }
 
-export default connect(state => state, { postToEdit })(UserPostCard);
+function mapStateToProps(state) {
+  return {
+    userInfo: state.userState.userInfo,
+  };
+}
+
+export default connect(mapStateToProps, { postToEdit, deletePost, getUserById })(UserPostCard);
