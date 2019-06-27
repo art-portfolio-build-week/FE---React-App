@@ -1,81 +1,51 @@
 import React, { useEffect } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import pt from "prop-types";
-import { authenticate } from "./redux/actions/actionCreators";
+import { authenticate, setLoggedUser } from "./redux/actions/actionCreators";
+
+// Components
 import Header from "./components/Navigation";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import PostForm from "./components/Posts/Forms/postForm";
-import Gallery from "./components/Posts/Posts/Gallery";
-import lobster from "./assets/fonts/Lobster/Lobster-Regular.ttf";
-import latoRegular from "./assets/fonts/Lato/Lato-Regular.ttf";
-import latoBold from "./assets/fonts/Lato/Lato-Bold.ttf";
-import latoItalic from "./assets/fonts/Lato/Lato-Italic.ttf";
+import Gallery from "./components/Posts/Post Components/Gallery";
+import PostPage from "./components/Posts/Post Components/PostPage";
+import ProfilePage from "./components/Profile/ProfilePage";
+import Footer from "./components/Navigation/Footer";
 
-const GlobalStyle = createGlobalStyle`
-body, html{
-  @font-face {
-    font-family: 'Lobster';
-    src: url(${lobster});
-    font-style: normal;
-    font-weight: 400;
-    font-display: cursive
-  }
-@font-face {
-    font-family: 'Lato';
-    src: url(${latoRegular});
-    font-style: normal;
-    font-weight: 400;
-    font-display: sans-serif
-  }
-@font-face {
-    font-family: 'Lato';
-    src: url(${latoBold});
-    font-weight: bold;
-    font-display: sans-serif
-  }
-@font-face {
-    font-family: 'Lato';
-    src: url(${latoItalic});
-    font-style: italic, oblique;
-    font-display: sans-serif
-  }
-}
-  :root{
-    font-size: 62.5%;
-  }
-  *, *::before, *::after, a{
-    box-sizing: border-box;
-    font-family: 'lato'
-  }
-`;
-
-const AppDiv = styled.div`
-  max-width: 825px;
-  width: 100%;
-`;
+import GlobalStyles from "./css";
 
 function App(props) {
-  const { authenticate, token } = props;
+  const {
+    authenticate,
+    token,
+    loggedUser,
+    setLoggedUser,
+  } = props;
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
     if (localToken) {
       authenticate(localToken);
+      setLoggedUser(username);
     }
-  }, [token]);
+  }, [token, authenticate, setLoggedUser]);
 
   return (
-    <AppDiv>
-      <GlobalStyle />
-      <Header token={token} />
+    <>
+      <GlobalStyles />
+      <Header token={token} loggedUser={loggedUser} />
+      <Route exact path="/" component={Gallery} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
-      <Route exact path="/" component={Gallery} />
-    </AppDiv>
+      <Route path="/post/:id" component={PostPage} />
+      <Route path="/u/:username(.*):id" component={ProfilePage} />
+      <Footer />
+    </>
   );
 }
 
@@ -85,15 +55,20 @@ function mapStateToProps(state) {
     isFetching: state.postState.postList,
     errorMessage: state.postState.errorMessage,
     token: state.authState.token,
+    loggedUser: state.authState.loggedUser,
   };
 }
 
-export default connect(mapStateToProps, { authenticate })(App);
+export default connect(mapStateToProps, { authenticate, setLoggedUser })(App);
 
 App.defaultProps = {
   token: null,
+  loggedUser: null,
 };
 
 App.propTypes = {
   token: pt.string,
+  authenticate: pt.func.isRequired,
+  loggedUser: pt.string,
+  setLoggedUser: pt.func.isRequired,
 };

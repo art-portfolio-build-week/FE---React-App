@@ -1,38 +1,56 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { HeaderTag, Button, BottomDiv } from "./css";
+import React, { useState, useEffect } from "react";
+import pt from "prop-types";
+import { NavLink, Link } from "react-router-dom";
+import { HeaderTag } from "./css";
 import userSVG from "../../assets/svg/user.svg";
+import UserModal from "./UserModal";
 
-export default function ({ token }) {
+export default function Header({ token, loggedUser }) {
+  const [modal, updateModal] = useState(false);
+  const showModal = () => {
+    updateModal(!modal);
+  };
+
+  useEffect(() => {
+    if (!token) {
+      updateModal(false);
+    }
+  }, [token]);
+
   return (
     <HeaderTag>
       <nav>
-        <a href="#"><h1>Artista</h1></a>
-        <input />
-        <NavLink to="/">Galleries</NavLink>
-        <NavLink to="/postart">Add A New Post</NavLink>
-        {token ? (
-          <NavLink to="#">Name</NavLink>
-        ) : (
-          <React.Fragment>
-            <NavLink to="/register">Sign Up</NavLink>
-            <NavLink to="/login">Log In</NavLink>
-          </React.Fragment>
-        )
-        }
-        <img src={userSVG} alt="user" />
+        <Link to="/"><h1>Artista</h1></Link>
+        <input type="text" name="search-query" />
+        <section>
+          <NavLink exact to="/">Galleries</NavLink>
+          <NavLink to="/find-artists">Find Artists</NavLink>
+          {token && <NavLink to="/postart">Add A New Post</NavLink>}
+          {token ? (
+            <button type="button" onClick={showModal} className="user">
+              <h4>{loggedUser}</h4>
+              <img src={userSVG} alt="user" />
+            </button>
+          ) : (
+            <React.Fragment>
+              <NavLink to="/register">Sign Up</NavLink>
+              <NavLink to="/login">Sign In</NavLink>
+            </React.Fragment>
+          )
+          }
+        </section>
       </nav>
-      {!token && <BottomContent />}
-
+      <UserModal modal={modal} />
     </HeaderTag>
   );
 }
 
-function BottomContent() {
-  return (
-    <BottomDiv>
-      <div><h2>Gallery</h2></div>
-      <div><Button type="button">Sign me up!</Button></div>
-    </BottomDiv>
-  );
-}
+Header.defaultProps = {
+  token: null,
+  loggedUser: null,
+};
+
+Header.propTypes = {
+  token: pt.string,
+  loggedUser: pt.string,
+};

@@ -2,67 +2,89 @@ import styled from "styled-components";
 import * as colors from "../../assets/styling";
 
 export const HeaderTag = styled.header`
-  a {
+  a, .user {
     text-decoration: none;
     color: ${colors.navLinks};
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     font-weight: bold;
+    transition: 0.2s;
+    margin: 0 2rem;
+    padding-bottom: 0.2rem;
     &:hover{
       color: ${colors.sadBlue};
+      transition: 0.2s;
+    }
+    @media (max-width: 760px){
+        margin: 1rem;
+      }
+    &.active{
+      border-bottom: 2px solid ${colors.activeLink}
     }
   }
+  button.user{
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
   nav {
+    position: relative;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background: ${colors.HeaderBgColor};
-    height: 6.6rem;
+    padding: 2rem;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.5);
+    z-index: 0;
+    @media (max-width: 1250px){
+        flex-direction: column;
+      }
+    section{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 1250px){
+        width: 100%;
+      }
+      @media (max-width: 760px){
+        flex-direction: column;
+      }
+    }
+    .user{
+      display: flex;
+      align-items: center;
+      img{
+      height: 6rem;
+      margin: 0 1.25rem;
+      @media (max-width: 760px){
+        display: none;
+      }
+    }
   }
   h1 {
     font-family: "lobster", cursive;
-    font-size: 3rem;
+    font-size: 5.5rem;
     letter-spacing: 0.2rem;
     color: ${colors.navLinks};
     margin: 0 1.8rem;
+    @media (max-width: 1250px){
+      font-size: 3.6rem;
+      margin-bottom: 1rem;
+      }
   }
-  img{
-    height: 4.6rem;
-    margin-right: 1.25rem;
   }
   input{
-    background-color: ${colors.navInput};
+    background-color: white;
     border: 1px solid ${colors.navInputBorder};
     border-radius: 0.5rem;
+    height: 3rem;
+    width: 30rem;
     padding: 0.2rem 0.5rem;
-    color: ${colors.navLinks}
+    color: ${colors.navInputBorder};
+    @media (max-width: 1250px){
+      font-size: 3.6rem;
+      margin-bottom: 1rem;
+      }
   }
 `;
 
-export const Button = styled.button`
-  background-color: ${colors.headerButton};
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 1.2rem 2rem;
-  margin: 1.5rem 0;
-  &:hover{
-    background-color: ${colors.headerButtonHover};
-  }
-`;
-
-export const BottomDiv = styled.div`
-  padding: 0 4.1rem;
-  height: 18.5rem;
-  background-color: ${colors.sadBlue};
-  div {
-    display: flex;
-    align-items: flex-start;
-    height: 50%;
-    h2 {
-      align-self: flex-end;
-      margin-bottom: 2rem;
-      font-size: 2.6rem;
-      color: ${colors.navLinks};
-    }
-  }
-`;
+export default HeaderTag;

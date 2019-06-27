@@ -1,23 +1,106 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+import styled from "styled-components";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
 import pt from "prop-types";
 import { loginUser } from "../../redux/actions/actionCreators";
 import { requiredLogin, loginInvalid } from "../../constants";
+import loginImage from "../../assets/images/loginImagejpeg";
+import { Button, flexColumn, Image } from "../../assets/styling";
+
+const LoginContainer = styled.div`
+  ${flexColumn};
+  padding: 8rem;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const SectionLeft = styled.section`
+  width: 40%;
+  ${flexColumn}
+  align-items: center;
+    h1{
+      align-self: flex-start;
+      font-size: 44px;
+      font-weight: bold;
+      font-family: "lato";
+    }
+`;
+
+const StyledForm = styled(Form)`
+  ${flexColumn};
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+  div{
+    width: 80%;
+    input{
+      height: 4.5rem;
+      width: 100%;
+      padding: 1rem;
+      border:2px solid #979797;
+      border-radius: 4px;
+    }
+  }
+  h2{
+    margin-top: 2.5rem;
+    line-height: 2;
+    align-self: flex-start;
+    font-size: 24px;
+    font-family: "lato";
+    font-weight: 600;
+  }
+  .form{
+    ${flexColumn}
+    height: 60%;
+    button{
+      margin-top: 5rem;
+    }
+  }
+
+`;
+
+const Error = styled.div`
+  ${flexColumn}
+  p{
+    align-self: center;
+    font-family: "lato";
+    line-height: 1.3;
+    color: #C30B0B;
+    font-size: 24px;
+    font-style: italic;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+`;
 
 function Login(props) {
-  const { errors, touched } = props;
+  const { errors, touched, token } = props;
+  if (token) {
+    return <Redirect to="/" />;
+  }
   return (
-    <Form>
-      <h2>Email Address</h2>
-      <Field type="text" name="email" placeholder="johndoe@email.com" />
-      {touched.email && errors.email && <p>{errors.email}</p>}
-      <h2>Password</h2>
-      <Field type="password" name="password" placeholder="1234Love is the most used password" />
-      {touched.password && errors.password && <p>{errors.password}</p>}
-      <button type="submit">Login</button>
-    </Form>
+    <LoginContainer>
+      <SectionLeft>
+        <h1>Welcome Back!</h1>
+        <Image src={loginImage} alt="" />
+      </SectionLeft>
+      <StyledForm>
+        <Error>
+          {touched.email && errors.email && <p>{errors.email}</p>}
+          {touched.password && errors.password && <p>{errors.password}</p>}
+        </Error>
+        <div className="form">
+          <h2>Email Address</h2>
+          <Field type="text" name="email" placeholder="johndoe@email.com" />
+          <h2>Password</h2>
+          <Field type="password" name="password" placeholder="1234Love is the most used password" />
+          <Button type="submit">Login</Button>
+        </div>
+      </StyledForm>
+    </LoginContainer>
   );
 }
 function mapPropsToValues() {
@@ -46,14 +129,22 @@ const LoginFormik = withFormik({
   },
 })(Login);
 
-export default connect(state => state, { loginUser })(LoginFormik);
+function mapStateToProps(state) {
+  return {
+    token: state.authState.token,
+  };
+}
+
+export default connect(mapStateToProps, { loginUser })(LoginFormik);
 
 Login.defaultProps = {
+  token: null,
   errors: {},
   touched: {},
 };
 
 Login.propTypes = {
+  token: pt.string,
   errors: pt.shape({
     email: pt.string,
     password: pt.string,

@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
@@ -6,82 +7,183 @@ import styled from "styled-components";
 import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
+import loginImage from "../../assets/images/loginImagejpeg";
+// import styling
+import {
+  Button,
+  flexColumn,
+  sadBabyBlue,
+  navyBlue,
+  Image,
+} from "../../assets/styling";
 
 const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  section{
+  ${flexColumn};
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  input{
+      height: 4rem;
+      width: 100%;
+      padding: 1rem;
+      border:2px solid #979797;
+      border-radius: 4px;
+  }
+  h2{
+    margin-top: 2.5rem;
+    word-break: keep-all;
+    white-space: nowrap;
+    line-height: 2;
+    align-self: flex-start;
+    font-size: 2rem;
+    font-family: "lato";
+    font-weight: 600;
+  }
+  .password{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
     div{
       display: flex;
       flex-direction: column;
       width: 48%;
     }
+    .error{
+      width: 100%;
+    }
+  }
+  textarea{
+    height: 8rem;
+    width: 100%;
+    resize: none;
+    padding: 0.5rem;
+    border: 0.2rem solid #979797;
+    border-radius: 0.2rem;
+  }
+  button{
+    margin-top: 5rem;
+    background-color: white;
+    color: #171D21;
+    border: 3px solid #171D21;
+    &:hover{
+      transition: 0.2s;
+      background-color: ${sadBabyBlue};
+      color: ${navyBlue};
+    }
+  }
+`;
+
+const Error = styled.div`
+  font-size: 1.8rem;
+  font-family: "lato";
+  line-height: 1.3;
+  color: #C30B0B;
+  font-style: italic;
+  word-break: keep-all;
+  white-space: nowrap;
+  align-self: flex-start;
+`;
+
+const RegisterDiv = styled.div`
+  ${flexColumn};
+  padding: 8rem;
+  align-items: center;
+  h1{
+    margin-bottom: 1rem;
+    font-size: 4.6rem;
+    font-family: "lato";
+    font-weight: bold;
+  }
+  section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    img{
+      margin: 0;
+    }
   }
 `;
 
 function Register(props) {
-  const { errors, touched } = props;
+  const { errors, touched, token } = props;
 
+  if (token) {
+    return <Redirect to="/" />;
+  }
   return (
-    <StyledForm>
-      <h2>First Name</h2>
-      <Field type="text" name="fistName" placeholder="John" />
-
-      <h2>Last Name</h2>
-      <Field type="text" name="lastName" placeholder="Doe" />
-
-      <h2>Email Adress</h2>
-      <Field type="text" name="email" placeholder="johndoe@email.com" />
-
-      <h2>Date Of Birth</h2>
-      <Field type="date" name="dob" min="1903-01-02" max="2006-01-01" />
+    <RegisterDiv>
+      <h1>Let us show off your work!</h1>
       <section>
-        <div>
-          <h2>Password</h2>
-          <Field type="password" name="password" />
-        </div>
-        <div>
-          <h2>Password Confirmation</h2>
-          <Field type="password" name="passwordConfirm" />
-        </div>
+        <Image src={loginImage} alt="" />
+        <StyledForm>
+          <h2>First Name</h2>
+          <Field type="text" name="firstName" placeholder="John" />
+          {errors.firstName && <Error>{errors.firstName}</Error>}
+          <h2>Last Name</h2>
+          <Field type="text" name="lastName" placeholder="Doe" />
+          {errors.lastName && <Error>{errors.lastName}</Error>}
+          <h2>Email Adress</h2>
+          <Field type="text" name="email" placeholder="johndoe@email.com" />
+          {errors.email && <Error>{errors.email}</Error>}
+          <h2>Date Of Birth</h2>
+          <Field type="date" name="dob" min="1903-01-02" max="2006-01-01" />
+          {errors.dob && <Error>{errors.dob}</Error>}
+          <section className="password">
+            <div>
+              <h2>Password</h2>
+              <Field type="password" name="password" />
+            </div>
+            <div>
+              <h2>Confirm</h2>
+              <Field type="password" name="passwordConfirm" />
+            </div>
+            <div className="error">
+              {touched.password
+                && errors.password
+                && <Error>{errors.password}</Error>}
+              {touched.passwordConfirm
+                && errors.passwordConfirm
+                && <Error>{errors.passwordConfirm}</Error>}
+            </div>
+          </section>
+          <h2>Phone Number</h2>
+          <Field type="text" name="phone" />
+          {errors.phone && <Error>{errors.phone}</Error>}
+          <h2>Short Bio</h2>
+          <Field type="text" component="textarea" name="uvp" />
+          {errors.uvp && <Error>{errors.uvp}</Error>}
+          <Button type="submit">Register</Button>
+        </StyledForm>
       </section>
-      {errors.passwordConfirm && <p>{errors.passwordConfirm}</p>}
-      <Field type="text" name="igHandle" />
-      {touched.igHandle && errors.igHandle && <p>{errors.igHandle}</p>}
-      <Field type="text" name="twHandle" />
-      {touched.igHandle && errors.twHandle && <p>{errors.twHandle}</p>}
-      <button type="submit">Register</button>
-    </StyledForm>
+    </RegisterDiv>
   );
 }
 
 function mapPropsToValues() {
   return {
-    fistName: "",
+    firstName: "",
     lastName: "",
     email: "",
     dob: "",
     password: "",
     passwordConfirm: "",
-    igHandle: "",
-    twHandle: "",
+    phone: "",
+    uvp: "",
   };
 }
 
-const instagramRegEx = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
-const twitterRegEx = /\s([@#][\w_-]{1,15})/;
-
-const valSchema = async () => (
+const valSchema = () => (
   Yup.object().shape({
-    // username: Yup.string(registerInvalid.username).min(6).required(registerRequired.username),
+    firstName: Yup.string(registerInvalid.firstName).required(registerRequired.firstName),
+    lastName: Yup.string(registerInvalid.lastName).required(registerRequired.lastName),
     email: Yup.string().email(registerInvalid.email).required(registerRequired.email),
     dob: Yup.date(registerInvalid.dob).required(registerRequired.dob),
     password: Yup.string().min(8, registerInvalid.password).required(registerRequired.password),
-    passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], registerInvalid.passwordConfirm).required(registerRequired.passwordConfirm),
-    igHandle: Yup.string().matches(instagramRegEx, registerInvalid.igHandle),
-    twHandle: Yup.string().matches(twitterRegEx, registerInvalid.twHandle),
+    passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], registerInvalid.passwordConfirm).required(registerInvalid.passwordConfirm),
+    phone: Yup.number(registerInvalid.phone).required(registerRequired.phone),
+    uvp: Yup.string(registerInvalid.uvp).required(registerRequired.uvp),
   })
 );
 
@@ -93,6 +195,9 @@ const RegisterFormik = withFormik({
       username: `${values.fistName} ${values.lastName}`,
       password: values.password,
       email: values.email,
+      dob: values.dob,
+      phone: values.phone,
+      uvp: values.uvp,
     };
     const errors = await props.registerUser(newUser);
     if (errors) {
@@ -102,14 +207,22 @@ const RegisterFormik = withFormik({
   },
 })(Register);
 
-export default connect(state => state, { registerUser })(RegisterFormik);
+function mapStateToProps(state) {
+  return {
+    token: state.authState.token,
+  };
+}
+
+export default connect(mapStateToProps, { registerUser })(RegisterFormik);
 
 Register.defaultProps = {
+  token: null,
   errors: {},
   touched: {},
 };
 
 Register.propTypes = {
+  token: pt.string,
   errors: pt.shape({
     username: pt.string,
     email: pt.string,

@@ -1,8 +1,14 @@
 import { combineReducers } from "redux";
-import { postReducer, authReducer, editPostReducer } from "./reducers";
+import {
+  postReducer,
+  postIdReducer,
+  authReducer,
+  userReducer,
+} from "./reducers";
 
 export default combineReducers({
   postState: postReducer,
   authState: authReducer,
-  editState: editPostReducer,
+  userState: userReducer,
+  postIdState: postIdReducer,
 });

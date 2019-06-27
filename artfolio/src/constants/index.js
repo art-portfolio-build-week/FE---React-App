@@ -1,10 +1,13 @@
 // URL
-export const login = "https://art-draft.herokuapp.com/api/login";
-export const register = "https://art-draft.herokuapp.com/api/register";
+export const login = "https://artista-backend.herokuapp.com/api/login";
+export const register = "https://artista-backend.herokuapp.com/api/register";
 
-export const fetchAll = "https://art-draft.herokuapp.com/api/posts";
-export const addPost = "https://art-draft.herokuapp.com/api/posts";
-export const putPost = id => `https://art-draft.herokuapp.com/api/posts/${id}`;
+export const fetchAll = "https://artista-backend.herokuapp.com/api/posts";
+export const getPostById = id => `https://artista-backend.herokuapp.com/api/posts/${id}`;
+export const addPost = "https://artista-backend.herokuapp.com/api/posts";
+export const votePost = id => `https://artista-backend.herokuapp.com/api/posts/votes/${id}`;
+
+export const getUser = id => `https://artista-backend.herokuapp.com/api/users/${id}`;
 
 // Error Messages
 export const loginInvalid = {
@@ -18,19 +21,22 @@ export const requiredLogin = {
 };
 
 export const registerInvalid = {
-  username: "Please enter a valid name.",
+  firstName: "Please enter a valid First Name.",
+  lastName: "Please enter a valid Last Name.",
   dob: "Please enter a valid date of birth",
   email: "Please enter a valid email.",
   password: "Your password must atleast be 8 characters long.",
   passwordConfirm: "Your passwords do not match.",
-  igHandle: "That is not a valid instagram handle",
-  twHandle: "That is not a valid twitter handle",
+  phone: "That is not a valid phone number",
+  uvp: "Enter at least 150 words",
 };
 
 export const registerRequired = {
-  username: "An username is required in order to Register",
-  dob: "A date of birth is required in order to Register",
+  firstName: "A first name is required in order to sign",
+  lastName: "A last name is required in order to sign",
+  dob: "A date of birth is required in order to sign",
   email: "An email is required in order to signup",
   password: "A password is required in order to signup",
-  passwordConfirm: "You need to confirm your password before registering",
+  phone: "A phone number  is required in order to signup",
+  uvp: "A bio is needed in order to signup",
 };

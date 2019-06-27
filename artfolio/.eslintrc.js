@@ -25,5 +25,6 @@ module.exports = {
     "no-underscore-dangle": 0,
     "arrow-parens": 0,
     "no-shadow": 0,
+    "react/jsx-one-expression-per-line": 0,
   }
 };
