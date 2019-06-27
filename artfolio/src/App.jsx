@@ -13,6 +13,7 @@ import PostForm from "./components/Posts/Forms/postForm";
 import Gallery from "./components/Posts/Post Components/Gallery";
 import PostPage from "./components/Posts/Post Components/PostPage";
 import ProfilePage from "./components/Profile/ProfilePage";
+import Footer from "./components/Navigation/Footer";
 
 import GlobalStyles from "./css";
 
@@ -43,6 +44,7 @@ function App(props) {
       <Route path="/postart" component={PostForm} />
       <Route path="/post/:id" component={PostPage} />
       <Route path="/u/:username(.*):id" component={ProfilePage} />
+      <Footer />
     </>
   );
 }
