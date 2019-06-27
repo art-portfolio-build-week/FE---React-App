@@ -5,7 +5,7 @@ import moment from "moment";
 import pt from "prop-types";
 import { fetchById } from "../../../redux/actions/actionCreators";
 import { getPostById } from "../../../constants";
-import UserCard from "./UserCard";
+import UserCard from "../../Profile/UserCard";
 
 const Div = styled.div`
   display: flex;
