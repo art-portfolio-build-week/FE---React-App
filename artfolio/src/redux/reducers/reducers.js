@@ -44,6 +44,7 @@ const authState = {
   token: null,
   authMessage: null,
   loggedUser: null,
+  loggedUserID: null,
 };
 
 export function authReducer(state = authState, action) {
@@ -54,6 +55,8 @@ export function authReducer(state = authState, action) {
       return { ...state, authMessage: action.payload };
     case types.LOGGED_USER:
       return { ...state, loggedUser: action.payload };
+    case types.LOGGED_USER_ID:
+      return { ...state, loggedUserID: action.payload };
     default:
       return state;
   }

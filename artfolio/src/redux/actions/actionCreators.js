@@ -26,10 +26,12 @@ export const loginUser = payload => dispatch => {
   axios.post(URL.login, payload)
     .then(res => {
       dispatch(authenticate(res.data.token));
+      dispatch({ type: types.LOGGED_USER_ID, payload: res.data.id });
       dispatch(setAuthMessageToState(res.data.message));
       dispatch(setLoggedUser(res.data.username));
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
+      localStorage.setItem("userID", res.data.id);
     })
     .catch(err => {
       dispatch(setAuthMessageToState(err.message));

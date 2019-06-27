@@ -10,6 +10,7 @@ export const FETCH_BY_ID_OK = "FETCH_BY_ID_OK";
 export const FETCH_BY_ID_FAIL = "FETCH_BY_ID_FAIL";
 
 export const LOGGED_USER = "LOGGED_USER";
+export const LOGGED_USER_ID = "LOGGED_USER_ID";
 
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const GET_USER_BY_ID_OK = "GET_USER_BY_ID_OK";
