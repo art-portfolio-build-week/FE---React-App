@@ -7,7 +7,8 @@ export default function () {
 
   return axios.create({
     headers: {
-      authorization: token,
+      Authorization: token,
+      "Content-Type": "application/json",
     },
   });
 }
