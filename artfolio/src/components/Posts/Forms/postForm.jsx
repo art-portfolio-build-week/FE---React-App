@@ -163,8 +163,7 @@ const FormikForm = withFormik({
     if (props.toBeEdited) {
       // eslint-disable-next-line prefer-destructuring
       const id = props.toBeEdited.id;
-      const editedObject = { ...props.toBeEdited, ...values };
-      const errors = await props.editPost(getPostById(id), editedObject);
+      const errors = await props.editPost(getPostById(id), values);
       if (errors) {
         setErrors(errors);
       }
