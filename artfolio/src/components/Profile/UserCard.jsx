@@ -45,6 +45,7 @@ function UserCard(props) {
     // for some reason this hook keeps re-rendering
     // even tough it's set to be onMount and unMount only
     // added a logical condition to exit out useEffect if the id's match
+    // to see the effect go to uncomemnt if statement, go profile page & hover over a post
     if (user) {
       if (user.user.id === Number(userID)) {
         return;
