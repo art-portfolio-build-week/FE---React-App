@@ -32,7 +32,7 @@ const Footer = styled.footer`
  .copyright{
    align-self: flex-end;
  }
-`
+`;
 
 export default function () {
   return (
@@ -44,7 +44,7 @@ export default function () {
       <div>
         <h4>Site Map</h4>
         <p>Create Account</p>
-        <p>Log In</p>
+        <p>Sign In</p>
       </div>
       <p className="copyright">Copyright Artista</p>
     </Footer>

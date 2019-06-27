@@ -34,7 +34,7 @@ export default function Header({ token, loggedUser }) {
           ) : (
             <React.Fragment>
               <NavLink to="/register">Sign Up</NavLink>
-              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/login">Sign In</NavLink>
             </React.Fragment>
           )
           }
