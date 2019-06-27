@@ -21,7 +21,11 @@ export const HeaderTag = styled.header`
       border-bottom: 2px solid ${colors.activeLink}
     }
   }
-
+  button.user{
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
   nav {
     position: relative;
     display: flex;
