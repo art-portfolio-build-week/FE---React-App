@@ -9,6 +9,6 @@ import {
 export default combineReducers({
   postState: postReducer,
   authState: authReducer,
-  editState: userReducer,
+  userState: userReducer,
   postIdState: postIdReducer,
 });

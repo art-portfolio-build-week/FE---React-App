@@ -180,7 +180,7 @@ const FormikForm = withFormik({
 
 function mapStateToProps(state) {
   return {
-    toBeEdited: state.editState.toBeEdited,
+    toBeEdited: state.userState.toBeEdited,
   };
 }
 
