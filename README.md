@@ -4,7 +4,7 @@
 
 ## What is the goal of this project?
 
-This application provides a more professional environment for artists to showcase their work than it is currently avaliabe in platforms such as Instagram or DevianArt. Our goal was to make it feel as professional as Linkedin or Squarespace but with an arty feel & touch to it.
+This application provides a more professional environment for artists to showcase their work than it is currently available on platforms such as Instagram or DevianArt. Our goal was to make it feel as professional as Linkedin or Squarespace, but with an arty feel & touch to it.
 
 ## Who worked on the team?
  -  Team Lead:
@@ -50,27 +50,27 @@ This project was created in 4 days with **`create-react-app`**
 
 ## What would I do differently ?
 
-  I worked with a team in a different timezone, 7-9 hours apart, despite being aware of this fact I jusmped into making the boilerplate for the application while I waited but I went to far and ended up making some questionable architectuing decisions.
+ I worked with a team in a different Timezone, 7-9 hours apart, despite being aware of this fact, I jumped into making the boilerplate for the application while I waited but I went too far and ended up making some questionable architecture decisions.
 
-  I believe that spending the first day or at least half of it, just planning out every single component & the general user flow of this application would've saved me a lot of time in the long run.
+ I believe that spending the first day or at least half of it, just planning out every single component & the general user flow of this application would've saved me a lot of time in the long run.
 
   Here aree some bullepoints:
 
-  - Meet with the UX & Backend before jumping into it
-  - Architecture the application with both the UX & Backend
-  - Use smaller more reusable components for more agile code
-  - Have more slices of state stored in redux
-  - Plan each component before starting coding
+ - Meet with the UX & Backend before jumping into it
+ - Architecture the application with both the UX & Backend
+ - Use smaller, more reusable components for more agile code
+ - Have more slices of state stored in redux
+ - Plan each component before starting coding
 
 ## Known Bugs & Fixes
 
  - [ ] When creating a post the second time the user gets redirected to the last posted post
- - [ ] Gallery not displaying properly in mobile view
+ - [ ] Gallery isn't displaying properly in mobile view
  - [ ] No Page linked to the Find Artists Page
  - [ ] No feedback if the password/email is wrong
  - [ ] No feedback if the user already exists in the database
  - [ ] No component to display default 404 Page
  - [ ] Some styling may look off in some browsers
- - [ ] No Link in the navbar section
+ - [ ] No Links work in the footer
 
 _`If a checkbox is marked it means that it is fixed`_
