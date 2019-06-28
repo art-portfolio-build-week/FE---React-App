@@ -41,6 +41,13 @@ function Gallery(props) {
     return postList.slice(0);
   };
 
+  // This can be abstracted away into another file if you'd like
+  // Just wanted to leave it here so you can see the logic at work
+
+  function getPagination(page, limit) {
+    return [(page - 1) * limit, page * limit];
+  }
+
   const filterPagination = postList => {
     maxPages = Math.ceil(postList.length / pageLimit);
     const [low, max] = getPagination(currentPage, pageLimit);
@@ -60,6 +67,7 @@ function Gallery(props) {
   const getPaginationLinks = () => {
     const links = [];
 
+    // eslint-disable-next-line no-plusplus
     for (let i = 1; i <= maxPages; i++) {
       links.push(
         <Span
@@ -133,7 +141,7 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchApi }
+  { fetchApi },
 )(Gallery);
 
 Gallery.defaultProps = {
@@ -150,13 +158,7 @@ Gallery.propTypes = {
       description: pt.string,
       imgURL: pt.string,
       votes: pt.number,
-      username: pt.string
-    })
-  ).isRequired
+      username: pt.string,
+    }),
+  ).isRequired,
 };
-
-// This can be abstracted away into another file if you'd like.  Just wanted to leave it here so you can see the logic at work
-
-function getPagination(page, limit) {
-  return [(page - 1) * limit, page * limit];
-}
