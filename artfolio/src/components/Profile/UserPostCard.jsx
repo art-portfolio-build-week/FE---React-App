@@ -15,6 +15,7 @@ const Article = styled.article`
   height: 30rem;
   width: 25rem;
   transition: transform 0.2s;
+  background-color: white;
   margin: 1.5rem;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -24,6 +25,11 @@ const Article = styled.article`
     }
   @media (max-width: 675px){
       margin: 1rem 0;
+  }
+  @media (max-width: 575px){
+      margin: 1rem 0;
+      width: 100%;
+      height: 100%;
   }
   &:hover{
       transform: scale(1.02);
@@ -39,6 +45,7 @@ const Article = styled.article`
     font-style: normal;
     font-size: 1.6rem;
     font-weight: 500;
+    margin: 1rem 0;
   }
 `;
 
@@ -48,6 +55,7 @@ const ViewMore = styled.button`
   border-radius: 3.5rem;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
+  margin: 1rem 0;
   transition: 0.2s ease-in;
   cursor: pointer;
   &:hover {

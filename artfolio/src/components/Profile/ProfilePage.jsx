@@ -93,6 +93,7 @@ const UserCardContainer = styled.div`
 `;
 
 const ShowCase = styled.div`
+  background-color: #f3f5f5;
   width: 100%;
   border: 0.2rem solid #153D5B;
   padding: 2rem;
