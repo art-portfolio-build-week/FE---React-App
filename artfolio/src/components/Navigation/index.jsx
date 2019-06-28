@@ -17,7 +17,6 @@ export default function Header({ token, loggedUser }) {
         <section>
           <NavLink exact to="/">Galleries</NavLink>
           <NavLink to="/find-artists">Find Artists</NavLink>
-          {token && <NavLink to="/postart">Add A New Post</NavLink>}
           {token ? (
             <Link to={`/u/${username}${id}`} className="user">
               <h4>{loggedUser}</h4>
