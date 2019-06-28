@@ -193,7 +193,7 @@ const RegisterFormik = withFormik({
   mapPropsToValues,
   handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
     const newUser = {
-      username: `${values.fistName} ${values.lastName}`,
+      username: `${values.firstName} ${values.lastName}`,
       password: values.password,
       email: values.email,
       dob: values.dob,

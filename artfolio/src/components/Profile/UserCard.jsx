@@ -15,6 +15,7 @@ const Div = styled.div`
   width: 82rem;
   height: 251px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  padding: 0 3rem;
   h2{
     line-height: 1.4;
     font-size: 2.4rem;

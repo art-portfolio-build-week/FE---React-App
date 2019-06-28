@@ -46,6 +46,7 @@ export const registerUser = payload => dispatch => {
       dispatch(setLoggedUser(res.data.username));
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
+      localStorage.setItem("userID", res.data.id);
     })
     .catch(err => {
       dispatch(setAuthMessageToState(err.message));

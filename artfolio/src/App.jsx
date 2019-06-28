@@ -43,7 +43,7 @@ function App(props) {
       <Route path="/register" component={Register} />
       <Route path="/postart" component={PostForm} />
       <Route path="/post/:id" component={PostPage} />
-      <Route path="/u/:username(.*):id" component={ProfilePage} />
+      <Route path="/u/:id" component={ProfilePage} />
       <Footer />
     </>
   );

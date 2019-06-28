@@ -6,7 +6,6 @@ import userSVG from "../../assets/svg/user.svg";
 
 export default function Header({ token, loggedUser }) {
   const id = localStorage.getItem("userID");
-  const username = localStorage.getItem("username") && localStorage.getItem("username").replace(/\s/g, "");
 
   return (
     <HeaderTag>
@@ -17,7 +16,7 @@ export default function Header({ token, loggedUser }) {
           <NavLink exact to="/">Galleries</NavLink>
           <NavLink to="/find-artists">Find Artists</NavLink>
           {token ? (
-            <Link to={`/u/${username}${id}`} className="user">
+            <Link to={`/u/${id}`} className="user">
               <h4>{loggedUser}</h4>
               <img src={userSVG} alt="user" />
             </Link>
