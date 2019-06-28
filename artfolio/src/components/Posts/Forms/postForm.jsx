@@ -159,7 +159,6 @@ const FormikForm = withFormik({
       if (errors) {
         setErrors(errors);
       }
-      props.history.goBack();
       return;
     }
     const newPost = { ...values, timestamp: moment().format() };
