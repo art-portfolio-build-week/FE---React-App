@@ -14,6 +14,9 @@ const PostPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 1250px){
+      width: 100%;
+    }
 `;
 
 const AddButton = styled.button`
@@ -34,9 +37,16 @@ const TopDiv = styled.div`
   display: flex;
   justify-content: space-between !important;
   padding: 5rem 5rem;
-h1{
-  font-size: 4.8rem;
-}
+  @media (max-width: 1250px){
+    justify-content: center !important;
+    flex-direction: row !important;
+  }
+  h1{
+    font-size: 4.8rem;
+    @media (max-width: 1250px){
+      width: 40%;
+    }
+  }
   display: flex;
   font-family: "lato";
   font-weight: bold;
@@ -45,6 +55,9 @@ h1{
     font-family: "latoIta";
     font-size: 2.8rem;
     color: #153D5B;
+    @media (max-width: 1250px){
+      width: 40%;
+    }
     &:hover{
       text-decoration: underline;
     }
@@ -55,10 +68,16 @@ const UserCardContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  @media (max-width: 1250){
+    flex-direction: column;
+  }
   div{
     width: 100%;
     display: flex;
     justify-content: center;
+      @media (max-width: 1250px){
+        flex-direction: column;
+      }
     section{
       display: flex;
       flex-direction: column;

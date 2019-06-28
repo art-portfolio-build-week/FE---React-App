@@ -16,6 +16,11 @@ const Div = styled.div`
   height: 251px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
   padding: 0 3rem;
+  @media (max-width: 1250px){
+    width: initial;
+    height: initial;
+    padding: 1rem 0;
+  }
   h2{
     line-height: 1.4;
     font-size: 2.4rem;

@@ -9,6 +9,9 @@ const Div = styled.div`
   align-content: space-around;
   justify-content: center;
   padding: 0 25rem;
+  @media (max-width: 1360px){
+    padding: 0 5rem;
+  }
 `;
 
 export default function PostList(props) {

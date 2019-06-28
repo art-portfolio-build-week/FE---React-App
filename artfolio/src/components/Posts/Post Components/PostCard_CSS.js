@@ -12,6 +12,14 @@ export const Article = styled.article`
   margin: 1.5rem;
   padding: 1rem;
   border-radius: 0.5rem;
+  @media (max-width: 1050px){
+    margin: 1.5rem 0;
+    border: 0.1rem solid grey;
+    width: 100%;
+  }
+  @media (max-width: 675px){
+      margin: 1rem 0;
+  }
   &:hover {
     transform: scale(1.02);
     transition: 0.2s;
