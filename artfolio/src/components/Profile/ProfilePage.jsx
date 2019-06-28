@@ -83,6 +83,12 @@ const ShowCase = styled.div`
     font-family: "lato";
     font-weight: bold;
   }
+  p{
+    text-align: center;
+    font-size: 3rem;
+    padding: 10rem;
+    font-family: "lato";
+  }
 `;
 
 function ProfilePage(props) {
