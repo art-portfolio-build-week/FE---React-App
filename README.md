@@ -70,6 +70,7 @@ I started out by building the boilerplate for the redux store and did some small
 ## Known Bugs & Fixes
 
  - [ ] When creating a post the second time the user gets redirected to the last posted post
+ - [ ] Signup banner is partially hidden for Guests
  - [x] Gallery isn't displaying properly in mobile view
  - [ ] No Page linked to the Find Artists Page
  - [ ] No feedback if the password/email is wrong
