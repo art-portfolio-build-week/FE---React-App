@@ -66,6 +66,7 @@ const ViewMore = styled.button`
 `;
 
 const Button = styled.button`
+  text-shadow: 0rem 0rem 0.3rem #000000;
   position: absolute;
   padding: 0;
   margin: 1.5rem;
