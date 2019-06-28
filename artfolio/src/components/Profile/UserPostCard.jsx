@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import pt from "prop-types";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { postToEdit, deletePost, getUserById } from "../../redux/actions/actionCreators";
-import { getPostById, getUser } from "../../constants"
+import { getPostById, getUser } from "../../constants";
 
 const Article = styled.article`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,8 +35,51 @@ const Article = styled.article`
   }
 `;
 
+const ViewMore = styled.button`
+  background-color: white;
+  border: 0.15rem solid black;
+  border-radius: 3.5rem;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: black;
+    transition: 0.2s ease-out;
+  }
+`;
+
+const Button = styled.button`
+  position: absolute;
+  padding: 0;
+  margin: 1.5rem;
+  font-family: "Font Awesome 5 Pro";
+  background-color: rgba(0,0,0,0);
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  &.left{
+    left: 0;
+  }
+  &:hover{
+    transform: scale(1.2);
+    color: orange;
+  }
+`;
+
 function UserPostCard(props) {
-  const { post, postToEdit, deletePost, getUserById, userInfo } = props;
+  const {
+    post,
+    postToEdit,
+    deletePost,
+    getUserById,
+    userInfo,
+  } = props;
+
   const [isEditing, updateIsEditing] = useState(false);
   useEffect(() => {
     updateIsEditing(false);
@@ -55,12 +100,12 @@ function UserPostCard(props) {
   }
   return (
     <Article>
-      <button type="button" onClick={passToState}>EDIT</button>
-      <button type="button" onClick={deletePostByID}>Delete</button>
+      <Button type="button" className="left" onClick={deletePostByID}>{"\uf2ed"}</Button>
+      <Button type="button" onClick={passToState}>{"\uf044"}</Button>
       <img src={post.imgURL} alt="" />
       <h2>Title: {post.title}</h2>
       <h2>Votes: {post.votes}</h2>
-      <Link to={`/post/${post.id}`}><button type="button">View More</button></Link>
+      <Link to={`/post/${post.id}`}><ViewMore type="button">View More</ViewMore></Link>
     </Article>
   );
 }
@@ -72,3 +117,18 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { postToEdit, deletePost, getUserById })(UserPostCard);
+
+UserPostCard.propTypes = {
+  post: pt.shape({
+    imgURL: pt.string,
+    post: pt.number,
+    id: pt.number,
+    username_id: pt.number,
+  }).isRequired,
+  postToEdit: pt.func.isRequired,
+  deletePost: pt.func.isRequired,
+  getUserById: pt.func.isRequired,
+  userInfo: pt.shape({
+    id: pt.number,
+  }).isRequired,
+};
