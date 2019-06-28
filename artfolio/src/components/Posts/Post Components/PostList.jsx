@@ -8,6 +8,7 @@ const Div = styled.div`
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
+  padding: 0 25rem;
 `;
 
 export default function PostList(props) {
