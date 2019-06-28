@@ -5,7 +5,6 @@ import { HeaderTag } from "./css";
 import userSVG from "../../assets/svg/user.svg";
 
 export default function Header({ token, loggedUser }) {
-
   const id = localStorage.getItem("userID");
   const username = localStorage.getItem("username") && localStorage.getItem("username").replace(/\s/g, "");
 
