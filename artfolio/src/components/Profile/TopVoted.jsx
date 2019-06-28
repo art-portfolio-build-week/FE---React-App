@@ -18,6 +18,7 @@ const Article = styled.article`
   img{
     margin: 0 4rem;
     margin-bottom: 1rem;
+    height: 250px;
   }
   h3{
     font-family: "lato";
