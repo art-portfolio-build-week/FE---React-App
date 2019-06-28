@@ -23,3 +23,25 @@ export default styled.ul`
     color: #081826;
   }
 `;
+
+export const Span = styled.span`
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-family: "lato";
+
+  &.active {
+    font-weight: 800;
+    cursor: initial;
+  }
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+`;
+
+export const Divider = styled.span`
+  margin: 0 5px;
+  font-size: 1.8rem;
+`;
