@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import pt from "prop-types";
 import { loginUser } from "../../redux/actions/actionCreators";
 import { requiredLogin, loginInvalid } from "../../constants";
-import loginImage from "../../assets/images/loginImagejpeg";
+import loginImage from "../../assets/images/loginImage.jpeg";
 import { Button, flexColumn, Image } from "../../assets/styling";
 
 const LoginContainer = styled.div`

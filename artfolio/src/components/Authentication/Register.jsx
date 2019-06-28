@@ -7,7 +7,8 @@ import styled from "styled-components";
 import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
-import loginImage from "../../assets/images/loginImagejpeg";
+import loginImage from "../../assets/images/loginImage.jpeg";
+
 // import styling
 import {
   Button,
