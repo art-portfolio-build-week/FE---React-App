@@ -1,5 +1,7 @@
 # Artista - Showcase your perspective
 
+[Visit the latest deployment](https://artista-fe.netlify.com/)
+
 ## What is the goal of this project?
 
 This application provides a more professional environment for artists to showcase their work than it is currently avaliabe in platforms such as Instagram or DevianArt. Our goal was to make it feel as professional as Linkedin or Squarespace but with an arty feel & touch to it.
