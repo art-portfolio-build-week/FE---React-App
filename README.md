@@ -48,19 +48,24 @@ This project was created in 4 days with **`create-react-app`**
   13. yup
 ```
 
+## What was the process?
+
+I started out by building the boilerplate for the redux store and did some small components here and there, then I guided myself over the MVP to create all the state management before creating the components, and it was a mistake since I didn't plan ahead. I went on creating everything and figure out everything on the go, which was also a bad idea. At the end I spent at least a whole day polishing the code and styling, which could've been avoided if I had planned out the project before hand.
+
 ## What would I do differently ?
 
  I worked with a team in a different Timezone, 7-9 hours apart, despite being aware of this fact, I jumped into making the boilerplate for the application while I waited but I went too far and ended up making some questionable architecture decisions.
 
  I believe that spending the first day or at least half of it, just planning out every single component & the general user flow of this application would've saved me a lot of time in the long run.
 
-  Here aree some bullepoints:
+## What did I learn?
 
  - Meet with the UX & Backend before jumping into it
  - Architecture the application with both the UX & Backend
  - Use smaller, more reusable components for more agile code
  - Have more slices of state stored in redux
  - Plan each component before starting coding
+ - Don't jump in to it without having a detailed plan
 
 ## Known Bugs & Fixes
 
