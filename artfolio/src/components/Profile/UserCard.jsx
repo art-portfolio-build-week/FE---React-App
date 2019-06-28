@@ -9,6 +9,7 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: "lato";
   line-height: 1.1;
   border: 2px solid #405768;
   width: 82rem;
@@ -18,6 +19,7 @@ const Div = styled.div`
     line-height: 1.4;
     font-size: 2.4rem;
     font-weight: bold;
+    font-family: "lato";
     span{
       font-weight: normal;
     }
