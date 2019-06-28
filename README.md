@@ -65,7 +65,7 @@ This project was created in 4 days with **`create-react-app`**
 ## Known Bugs & Fixes
 
  - [ ] When creating a post the second time the user gets redirected to the last posted post
- - [ ] Gallery isn't displaying properly in mobile view
+ - [x] Gallery isn't displaying properly in mobile view
  - [ ] No Page linked to the Find Artists Page
  - [ ] No feedback if the password/email is wrong
  - [ ] No feedback if the user already exists in the database
