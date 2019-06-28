@@ -1,11 +1,74 @@
-Dependencies used:
-  1. Styled-Components
-  2. React-Router-Dom
-  3. Redux 
-  4. Redux-dom
-  5. Redux-thunk
-  6. Axios
-  7. eslint (airbnb style guides)
-  8. Formik
-  9. Yup
-  10. PropTypes
+# Artista - Showcase your perspective
+
+## What is the goal of this project?
+
+This application provides a more professional environment for artists to showcase their work than it is currently avaliabe in platforms such as Instagram or DevianArt. Our goal was to make it feel as professional as Linkedin or Squarespace but with an arty feel & touch to it.
+
+## Who worked on the team?
+ -  Team Lead:
+    - Andrew Brush
+ - User Interface:
+    - Nisa Champagne
+    - Greg Poirier
+    - William Brooks
+  - User Experience:
+    - Mai Ho
+  - Backend-end
+    - Thierry Joux
+  - Front-end
+    - Patrick Rodrigues
+
+## How do I serve the application?
+
+This project was created in 4 days with **`create-react-app`**
+
+  ```
+    1. Clone the repo
+    2. cd artfolio/
+    3. npm install
+    4. npm start or npm run build
+  ```
+
+## What dependencies did I use ?
+```
+  1. axios
+  2. formik
+  3. moment
+  4. prop-types
+  5. react
+  6. react-dom
+  7. react-redux
+  8. react-router-dom
+  9. react-scripts
+  10. redux
+  11. redux-thunk
+  12. styled-components
+  13. yup
+```
+
+## What would I do differently ?
+
+  I worked with a team in a different timezone, 7-9 hours apart, despite being aware of this fact I jusmped into making the boilerplate for the application while I waited but I went to far and ended up making some questionable architectuing decisions.
+
+  I believe that spending the first day or at least half of it, just planning out every single component & the general user flow of this application would've saved me a lot of time in the long run.
+
+  Here aree some bullepoints:
+
+  - Meet with the UX & Backend before jumping into it
+  - Architecture the application with both the UX & Backend
+  - Use smaller more reusable components for more agile code
+  - Have more slices of state stored in redux
+  - Plan each component before starting coding
+
+## Known Bugs & Fixes
+
+ - [ ] When creating a post the second time the user gets redirected to the last posted post
+ - [ ] Gallery not displaying properly in mobile view
+ - [ ] No Page linked to the Find Artists Page
+ - [ ] No feedback if the password/email is wrong
+ - [ ] No feedback if the user already exists in the database
+ - [ ] No component to display default 404 Page
+ - [ ] Some styling may look off in some browsers
+ - [ ] No Link in the navbar section
+
+_`If a checkbox is marked it means that it is fixed`_
