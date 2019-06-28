@@ -29,7 +29,7 @@ function Gallery(props) {
           return postList.filter(post => post.category === "illustration");
         case "recent":
           return postList.sort(
-            (a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)
+            (a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp),
           );
         case "ranking":
           return postList.sort((a, b) => b.votes - a.votes);
@@ -68,9 +68,9 @@ function Gallery(props) {
           onClick={() => setCurrentPage(i)}
         >
           {i}
-        </Span>
+        </Span>,
       );
-      if (i < maxPages) links.push(<Divider>|</Divider>);
+      if (i < maxPages) links.push(<Divider key={`${i}a`}>|</Divider>);
       if (i >= 5) {
         i += 4;
       }
@@ -127,7 +127,7 @@ function Gallery(props) {
 function mapStateToProps(state) {
   return {
     postList: state.postState.postList,
-    token: state.authState.token
+    token: state.authState.token,
   };
 }
 
@@ -137,7 +137,7 @@ export default connect(
 )(Gallery);
 
 Gallery.defaultProps = {
-  token: null
+  token: null,
 };
 
 Gallery.propTypes = {
