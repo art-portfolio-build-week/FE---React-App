@@ -81,8 +81,9 @@ export const fetchById = URL => dispatch => {
 
 export const addPost = payload => dispatch => {
   axiosAuth().post(URL.addPost, payload)
-    .then(() => {
+    .then((res) => {
       dispatch(fetchApi(URL.fetchAll));
+      dispatch({ type: types.ADDED_POST, payload: res.data.newPost });
     })
     .catch(err => {
       dispatch({ type: types.FETCHING_FAIL, payload: err });
