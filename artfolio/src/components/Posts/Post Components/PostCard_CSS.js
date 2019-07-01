@@ -12,6 +12,15 @@ export const Article = styled.article`
   margin: 1.5rem;
   padding: 1rem;
   border-radius: 0.5rem;
+  @media (max-width: 1050px){
+    margin: 1.5rem 0;
+    height: 100%;
+    border: 0.1rem solid grey;
+    width: 100%;
+  }
+  @media (max-width: 675px){
+      margin: 1rem 0;
+  }
   &:hover {
     transform: scale(1.02);
     transition: 0.2s;
@@ -20,6 +29,7 @@ export const Article = styled.article`
   img {
     width: 100%;
     border-radius: 0.5rem 0.5rem 0 0;
+    margin-bottom: 1rem;
   }
   h2 {
     font-family: "lato";
@@ -28,6 +38,7 @@ export const Article = styled.article`
     font-weight: 500;
   }
   button {
+    margin: 1rem 0;
     background-color: white;
     border: 0.15rem solid black;
     border-radius: 3.5rem;

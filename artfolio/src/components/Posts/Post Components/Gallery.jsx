@@ -29,7 +29,7 @@ function Gallery(props) {
           return postList.filter(post => post.category === "illustration");
         case "recent":
           return postList.sort(
-            (a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)
+            (a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp),
           );
         case "ranking":
           return postList.sort((a, b) => b.votes - a.votes);
@@ -40,6 +40,13 @@ function Gallery(props) {
 
     return postList.slice(0);
   };
+
+  // This can be abstracted away into another file if you'd like
+  // Just wanted to leave it here so you can see the logic at work
+
+  function getPagination(page, limit) {
+    return [(page - 1) * limit, page * limit];
+  }
 
   const filterPagination = postList => {
     maxPages = Math.ceil(postList.length / pageLimit);
@@ -60,6 +67,7 @@ function Gallery(props) {
   const getPaginationLinks = () => {
     const links = [];
 
+    // eslint-disable-next-line no-plusplus
     for (let i = 1; i <= maxPages; i++) {
       links.push(
         <Span
@@ -68,9 +76,9 @@ function Gallery(props) {
           onClick={() => setCurrentPage(i)}
         >
           {i}
-        </Span>
+        </Span>,
       );
-      if (i < maxPages) links.push(<Divider>|</Divider>);
+      if (i < maxPages) links.push(<Divider key={`${i}a`}>|</Divider>);
       if (i >= 5) {
         i += 4;
       }
@@ -127,17 +135,17 @@ function Gallery(props) {
 function mapStateToProps(state) {
   return {
     postList: state.postState.postList,
-    token: state.authState.token
+    token: state.authState.token,
   };
 }
 
 export default connect(
   mapStateToProps,
-  { fetchApi }
+  { fetchApi },
 )(Gallery);
 
 Gallery.defaultProps = {
-  token: null
+  token: null,
 };
 
 Gallery.propTypes = {
@@ -150,13 +158,7 @@ Gallery.propTypes = {
       description: pt.string,
       imgURL: pt.string,
       votes: pt.number,
-      username: pt.string
-    })
-  ).isRequired
+      username: pt.string,
+    }),
+  ).isRequired,
 };
-
-// This can be abstracted away into another file if you'd like.  Just wanted to leave it here so you can see the logic at work
-
-function getPagination(page, limit) {
-  return [(page - 1) * limit, page * limit];
-}

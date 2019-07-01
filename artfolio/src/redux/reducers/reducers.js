@@ -68,12 +68,15 @@ const userState = {
   isFetching: true,
   errorMessage: null,
   message: null,
+  addedPost: null,
 };
 
 export function userReducer(state = userState, action) {
   switch (action.type) {
     case types.POST_TO_EDIT:
       return { ...state, toBeEdited: action.payload };
+    case types.ADDED_POST:
+      return { ...state, addedPost: action.payload };
     case types.GET_USER_BY_ID_OK:
       return { ...state, userInfo: action.payload, isFetching: true };
     case types.GET_USER_BY_ID_FAIL:

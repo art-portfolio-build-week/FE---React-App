@@ -7,7 +7,8 @@ import styled from "styled-components";
 import pt from "prop-types";
 import { registerUser } from "../../redux/actions/actionCreators";
 import { registerInvalid, registerRequired } from "../../constants";
-import loginImage from "../../assets/images/loginImagejpeg";
+import loginImage from "../../assets/images/loginImage.jpeg";
+
 // import styling
 import {
   Button,
@@ -22,6 +23,13 @@ const StyledForm = styled(Form)`
   justify-content: space-around;
   align-items: center;
   width: 30%;
+  @media (max-width: 1250px){
+    width: 80%
+  }
+  @media (max-width: 650px){
+    width: 100%;
+    text-align: center;
+  }
   input{
       height: 4rem;
       width: 100%;
@@ -38,6 +46,11 @@ const StyledForm = styled(Form)`
     font-size: 2rem;
     font-family: "lato";
     font-weight: 600;
+  @media (max-width: 650px){
+    width: 100%;
+    text-align: center;
+    align-self: center;
+  }
   }
   .password{
     display: flex;
@@ -89,11 +102,19 @@ const RegisterDiv = styled.div`
   ${flexColumn};
   padding: 8rem;
   align-items: center;
+  @media (max-width: 650px){
+    padding: 4rem;
+    }
   h1{
     margin-bottom: 1rem;
     font-size: 4.6rem;
     font-family: "lato";
     font-weight: bold;
+    @media (max-width: 650px){
+      width: 100%;
+      text-align: center;
+      align-self: center;
+    }
   }
   section{
     display: flex;
@@ -102,6 +123,9 @@ const RegisterDiv = styled.div`
     width: 100%;
     img{
       margin: 0;
+      @media (max-width: 1250px){
+        display: none;
+      }
     }
   }
 `;
@@ -192,7 +216,7 @@ const RegisterFormik = withFormik({
   mapPropsToValues,
   handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
     const newUser = {
-      username: `${values.fistName} ${values.lastName}`,
+      username: `${values.firstName} ${values.lastName}`,
       password: values.password,
       email: values.email,
       dob: values.dob,

@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import moment from "moment";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -92,7 +93,12 @@ const Div = styled.div`
 `;
 
 function PostForm(props) {
-  const { toBeEdited, history } = props;
+  const { toBeEdited, history, addedPost } = props;
+
+  if (addedPost) {
+    return <Redirect to={`/post/${addedPost.id}`} />;
+  }
+
   return (
     <Div>
       <h1>{toBeEdited ? "Edit a Post" : "Create a Post"}</h1>
@@ -144,7 +150,7 @@ const FormikForm = withFormik({
     const confirmDialog = props.toBeEdited
       ? "Are you sure you want to edit the post?"
       : "Are you sure you want to add the post?";
-
+    // eslint-disable-next-line no-alert
     window.confirm(confirmDialog);
     if (props.toBeEdited) {
       // eslint-disable-next-line prefer-destructuring
@@ -167,19 +173,24 @@ const FormikForm = withFormik({
 function mapStateToProps(state) {
   return {
     toBeEdited: state.userState.toBeEdited,
+    addedPost: state.userState.addedPost,
   };
 }
 
 export default connect(mapStateToProps, { addPost, editPost, postToEdit })(FormikForm);
 
 PostForm.defaultProps = {
-  history: {},
-  toBeEdited: {},
+  toBeEdited: null,
+  addedPost: null,
 };
 
 PostForm.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  history: pt.object,
+  addedPost: pt.shape({
+    id: pt.number,
+  }),
+  history: pt.shape({
+    goBack: pt.func,
+  }).isRequired,
   toBeEdited: pt.shape({
     id: pt.number,
     username_id: pt.number,

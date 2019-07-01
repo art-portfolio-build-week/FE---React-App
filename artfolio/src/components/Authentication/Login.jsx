@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import pt from "prop-types";
 import { loginUser } from "../../redux/actions/actionCreators";
 import { requiredLogin, loginInvalid } from "../../constants";
-import loginImage from "../../assets/images/loginImagejpeg";
+import loginImage from "../../assets/images/loginImage.jpeg";
 import { Button, flexColumn, Image } from "../../assets/styling";
 
 const LoginContainer = styled.div`
@@ -15,18 +15,31 @@ const LoginContainer = styled.div`
   padding: 8rem;
   flex-direction: row;
   justify-content: space-around;
+  @media (max-width: 950px){
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+  }
 `;
 
 const SectionLeft = styled.section`
   width: 40%;
   ${flexColumn}
   align-items: center;
+  @media (max-width: 950px){
+    width: initial;
+  }
     h1{
       align-self: flex-start;
       font-size: 44px;
       font-weight: bold;
       font-family: "lato";
     }
+  img{
+    @media (max-width: 950px){
+        display: none;
+      }
+  }
 `;
 
 const StyledForm = styled(Form)`
@@ -34,6 +47,9 @@ const StyledForm = styled(Form)`
   justify-content: space-around;
   align-items: center;
   width: 40%;
+  @media (max-width: 950px){
+    width: 90%;
+  }
   div{
     width: 80%;
     input{
